@@ -15,6 +15,41 @@
             margin: 15px;
         }
     </style>
+    <script>
+        if (window.WebSocket) {
+            let host = "ws://127.0.0.1:8888";
+            let ws = new WebSocket(host);
+            if (ws != null) {
+                ws.onopen = sOpen;
+                ws.onerror = sError;
+                ws.onmessage= sMessage;
+                ws.onclose= sClose;
+            }
+        }else {
+            alert("你的浏览器不支持WebSocket,请使用Chrome或FireFox!")
+        }
+
+        function sOpen(){
+            console.log('connect success!');
+        }
+        function sError(e){
+            console.log("error " + e);
+        }
+        function sMessage(msg){
+            console.log('server says:' + msg.data);
+            let data = JSON.parse(msg.data);
+            console.log(data);
+        }
+        function sClose(e){
+            console.log("connect closed:" + e.code);
+        }
+        function Send(msg){
+            ws.send(msg);
+        }
+        function Close(){
+            ws.close();
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
