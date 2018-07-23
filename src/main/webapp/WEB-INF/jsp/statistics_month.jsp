@@ -63,10 +63,10 @@
         autoclose: true
     });
     // 基于准备好的dom，初始化echarts实例
-    let myChart1 = echarts.init(document.getElementById('balapie'));
-    let myChart2 = echarts.init(document.getElementById('balabar'));
+    var myChart1 = echarts.init(document.getElementById('balapie'));
+    var myChart2 = echarts.init(document.getElementById('balabar'));
     // 指定图表的配置项和数据
-    let option1 = {
+    var option1 = {
         series: [
             {
                 name: '访问来源',
@@ -83,7 +83,7 @@
             }
         ]
     };
-    let option2 = {
+    var option2 = {
         title: {
             text: '单车收入金额'
         },
