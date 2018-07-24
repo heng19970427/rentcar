@@ -16,15 +16,15 @@
         }
     </style>
     <script>
+        let ws;
+        let cardinfos;
         if (window.WebSocket) {
             let host = "ws://127.0.0.1:8888";
-            let ws = new WebSocket(host);
-            if (ws != null) {
-                ws.onopen = sOpen;
-                ws.onerror = sError;
-                ws.onmessage= sMessage;
-                ws.onclose= sClose;
-            }
+            ws = new WebSocket(host);
+            ws.onopen = sOpen;
+            ws.onerror = sError;
+            ws.onmessage= sMessage;
+            ws.onclose= sClose;
         }else {
             alert("你的浏览器不支持WebSocket,请使用Chrome或FireFox!")
         }
@@ -37,17 +37,70 @@
         }
         function sMessage(msg){
             console.log('server says:' + msg.data);
-            let data = JSON.parse(msg.data);
-            console.log(data);
+            let json = JSON.parse(msg.data);
+            let act = json['act'];
+            let data = json['data'];
+            if (act === 'init') {
+                if (data){
+                    console.log("初始化成功!");
+                    auth();
+                }else {
+                    alert("请检查驱动及设备是否安装好!并刷新页面");
+                }
+            }else if (act === 'auth') {
+                if (data) {
+                    read();
+                }else {
+                    alert("请放置身份证, 若已放置请拿起重放!");
+                }
+            }else if (act === 'read') {
+                if (data === false) {
+                    alert("读取身份证失败!");
+                }else {
+                    cardinfos = decodeURIComponent(data);
+                    fillIDCardInfos(cardinfos);
+                }
+            }
+            console.log(json);
         }
         function sClose(e){
             console.log("connect closed:" + e.code);
         }
-        function Send(msg){
-            ws.send(msg);
+        function init() {
+            ws.send("init")
+        }
+        function auth(){
+            ws.send("auth")
+        }
+        function read() {
+            ws.send("read")
         }
         function Close(){
             ws.close();
+        }
+        function readCard() {
+            init();
+        }
+        function fillIDCardInfos(data) {
+            let infos = data.split(',');
+            let name = infos[0];
+            let sex = infos[1];
+            let folk = infos[2];
+            let birthday = infos[3];
+            let IDnum = infos[4];
+            let address = infos[5];
+            let agency = infos[6];
+            let expireStart = infos[7];
+            let expireEnd = infos[8];
+            $('#id-name').val(name);
+            $('#id-sex').val(sex);
+            $('#id-folk').val(folk);
+            $('#id-birthday').val(birthday);
+            $('#id-idnum').val(IDnum);
+            $('#id-address').val(address);
+            $('#id-agency').val(agency);
+            $('#id-expireStart').val(expireStart);
+            $('#id-expireEnd').val(expireEnd);
         }
     </script>
 </head>
@@ -121,6 +174,40 @@
                     <div class="form-row" style="width: 1000px">
                         <fieldset class="form-group">
                             <legend>身份证</legend>
+                            <div class="form-group">
+                                <label for="id-name">姓名</label>
+                                <input type="text" name="IDCard.name" id="id-name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-sex">性别</label>
+                                <input type="text" name="IDCard.sex" id="id-sex" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-folk">民族</label>
+                                <input type="text" name="IDCard.folk" id="id-folk" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-address">民族</label>
+                                <input type="text" name="IDCard.address" id="id-address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-birthday">生日</label>
+                                <input type="text" name="IDCard.birthday" id="id-birthday" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-idnum">身份证号码</label>
+                                <input type="text" name="IDCard.IDnum" id="id-idnum" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-agency">签发机关</label>
+                                <input type="text" name="IDCard.agency" id="id-agency" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="id-expireStart">有效日期</label>
+                                <input type="text" name="IDCard.expireStart" id="id-expireStart" class="form-control" placeholder="起始日期">
+                                -
+                                <input type="text" name="IDCard.expireEnd" id="id-expireEnd" class="form-control" placeholder="终止日期">
+                            </div>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="IDCard1">
                                 <label class="custom-file-label" for="IDCard1">身份证正面</label>
@@ -129,6 +216,7 @@
                                 <input type="file" class="custom-file-input" id="IDCard2">
                                 <label class="custom-file-label" for="IDCard2">身份证反面</label>
                             </div>
+                            <button type="button" class="btn btn-primary" onclick="readCard()">读取身份证</button>
                         </fieldset>
                     </div>
                     <div class="form-row" style="width: 1000px">

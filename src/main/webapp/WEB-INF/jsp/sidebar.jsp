@@ -12,7 +12,7 @@
             <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/index" class="nav-link">
                     <span data-feather="home"></span>
-                    总览 <span class="sr-only">(current)</span>
+                    总览
                 </a>
             </li>
 
