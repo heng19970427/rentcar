@@ -22,4 +22,8 @@ public class UserService {
         logger.info("roleId = "+roleId);
         return userMapper.getUsersByRoleId(roleId);
     }
+
+    List<User> getAllUserShop(){
+        return userMapper.queryAllUserShop();
+    }
 }

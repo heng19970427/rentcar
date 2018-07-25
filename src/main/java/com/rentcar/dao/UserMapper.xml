@@ -6,4 +6,9 @@
     <select id="getUserByRoleId" parameterType="int" resultType="User">
         select * from user where roleId=#{roleId}
     </select>
+
+    <select id="queryAllUserShop" resultType="User">
+        SELECT user_id,company,companylocation from `user`
+        WHERE role_id=2
+    </select>
 </mapper>

@@ -1,11 +1,18 @@
 package com.rentcar.service;
 
-import org.springframework.stereotype.Service;
 
+import com.rentcar.pojo.Car;
+
+import java.util.List;
 /**
  * @author zr
  */
-@Service
-public class CarManagerService {
-    
+public interface CarManagerService {
+
+    /**
+     * 获取用户租用所有车辆
+     * @param userId: 用户id
+     * @return list所有车辆
+     */
+    List<Car> getAllCar(int userId);
 }

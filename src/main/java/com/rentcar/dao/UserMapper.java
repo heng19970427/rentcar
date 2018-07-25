@@ -15,4 +15,6 @@ public interface UserMapper {
      * @return 符合身份的用户(list)
      */
     List<User> getUsersByRoleId(int roleId);
+
+    List<User> queryAllUserShop();
 }
