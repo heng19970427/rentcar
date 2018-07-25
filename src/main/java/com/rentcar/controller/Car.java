@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class car {
+public class Car {
     @RequestMapping("car_info")
     public String car_info(){
         return "car_info";
