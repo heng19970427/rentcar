@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author Xiaoliu
+ */
 @Service
 public class UserService {
     private static Logger logger = Logger.getLogger(UserService.class);
@@ -15,8 +18,8 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
-    public List<User> getUserByRoleId(int role_id){
-        logger.info("role_id = "+role_id);
-        return userMapper.getUsersByRoleId(role_id);
+    public List<User> getUserByRoleId(int roleId){
+        logger.info("roleId = "+roleId);
+        return userMapper.getUsersByRoleId(roleId);
     }
 }

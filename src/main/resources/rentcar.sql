@@ -272,7 +272,7 @@ UNLOCK TABLES;
 -- Table structure for table `repaire`
 --
 
-DROP TABLE IF EXISTS `repaire`;
+DROP TABLE IF EXISTS repair;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `repaire` (
@@ -293,9 +293,9 @@ CREATE TABLE `repaire` (
 -- Dumping data for table `repaire`
 --
 
-LOCK TABLES `repaire` WRITE;
-/*!40000 ALTER TABLE `repaire` DISABLE KEYS */;
-/*!40000 ALTER TABLE `repaire` ENABLE KEYS */;
+LOCK TABLES repair WRITE;
+/*!40000 ALTER TABLE repair DISABLE KEYS */;
+/*!40000 ALTER TABLE repair ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

@@ -1,5 +1,8 @@
 package com.rentcar.pojo;
 
+/**
+ * @author Xiaoliu
+ */
 public class Car {
     private int carId;
     private String color;

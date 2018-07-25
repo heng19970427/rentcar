@@ -1,5 +1,8 @@
 package com.rentcar.pojo;
 
+/**
+ * @author Xiaoliu
+ */
 public class User {
     private Integer userId;
     private String username;
@@ -13,7 +16,7 @@ public class User {
     private String img;
     private String note;
     private boolean verified;
-    private Integer verfyId;
+    private Integer verifyId;
     private Integer vipLevel;
     private Integer roleId;
     private IDCard idCard;
@@ -33,7 +36,7 @@ public class User {
                 ", img='" + img + '\'' +
                 ", note='" + note + '\'' +
                 ", verified=" + verified +
-                ", verfyId=" + verfyId +
+                ", verifyId=" + verifyId +
                 ", vipLevel=" + vipLevel +
                 ", roleId=" + roleId +
                 '}';
@@ -135,12 +138,12 @@ public class User {
         this.verified = verified;
     }
 
-    public Integer getVerfyId() {
-        return verfyId;
+    public Integer getVerifyId() {
+        return verifyId;
     }
 
-    public void setVerfyId(Integer verfyId) {
-        this.verfyId = verfyId;
+    public void setVerifyId(Integer verifyId) {
+        this.verifyId = verifyId;
     }
 
     public Integer getVipLevel() {
