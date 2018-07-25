@@ -19,7 +19,7 @@ public class User {
     private Integer verifyId;
     private Integer vipLevel;
     private Integer roleId;
-    private IDCard idCard;
+    private Integer idCardId;
 
     @Override
     public String toString() {
@@ -162,11 +162,11 @@ public class User {
         this.roleId = roleId;
     }
 
-    public IDCard getIdCard() {
-        return idCard;
+    public Integer getIdCardId() {
+        return idCardId;
     }
 
-    public void setIdCard(IDCard idCard) {
-        this.idCard = idCard;
+    public void setIdCardId(Integer idCardId) {
+        this.idCardId = idCardId;
     }
 }
