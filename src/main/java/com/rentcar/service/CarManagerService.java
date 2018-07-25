@@ -1,8 +1,11 @@
 package com.rentcar.service;
 
-import org.springframework.stereotype.Service;
 
-@Service
-public class CarManagerService {
-    
+import com.rentcar.pojo.Car;
+
+import java.util.List;
+
+public interface CarManagerService {
+
+    List<Car> getAllCar(int userId);
 }
