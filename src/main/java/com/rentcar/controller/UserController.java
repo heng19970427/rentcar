@@ -13,7 +13,6 @@ import java.util.List;
  * @author Xiaoliu
  */
 @Controller
-@RequestMapping("police")
 public class UserController {
     @Autowired
     private UserService userService;

@@ -12,7 +12,7 @@ public interface CarManagerService {
     /**
      * 获取用户租用所有车辆
      * @param userId: 用户id
-     * @return list所有车辆
+     * @return List 所有用户租用车辆
      */
     List<Car> getAllCar(int userId);
 }

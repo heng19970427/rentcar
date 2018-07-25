@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author zr
+ */
 @Service
 public class CarManagerServiceImpl implements CarManagerService {
     @Autowired
@@ -16,13 +19,5 @@ public class CarManagerServiceImpl implements CarManagerService {
     @Override
     public List<Car> getAllCar(int userId) {
         return carMapper.queryCarList(userId);
-    }
-
-    public CarMapper getCarMapper() {
-        return carMapper;
-    }
-
-    public void setCarMapper(CarMapper carMapper) {
-        this.carMapper = carMapper;
     }
 }

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * @author zr
+ */
 @Controller
 @RequestMapping("discount")
 public class DisCountPackageController {

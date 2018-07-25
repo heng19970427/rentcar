@@ -7,18 +7,18 @@ public class Car {
     private int carId;
     private String color;
     private String desc;
-    private String carcol;
-    private String fueltype;
+    private String fuelType;
     private String type;
     private String frameId;
     private String brand;
     private String img;
-    private double rentfee;
+    private double rentFee;
     private double deposit;
     private double capacity;
-    private double initfuel;
+    private double initFuel;
     private String status;
-    User user;
+    private User user;
+
     public int getCarId() {
         return carId;
     }
@@ -43,20 +43,12 @@ public class Car {
         this.desc = desc;
     }
 
-    public String getCarcol() {
-        return carcol;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setCarcol(String carcol) {
-        this.carcol = carcol;
-    }
-
-    public String getFueltype() {
-        return fueltype;
-    }
-
-    public void setFueltype(String fueltype) {
-        this.fueltype = fueltype;
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 
     public String getType() {
@@ -91,12 +83,12 @@ public class Car {
         this.img = img;
     }
 
-    public double getRentfee() {
-        return rentfee;
+    public double getRentFee() {
+        return rentFee;
     }
 
-    public void setRentfee(double rentfee) {
-        this.rentfee = rentfee;
+    public void setRentFee(double rentFee) {
+        this.rentFee = rentFee;
     }
 
     public double getDeposit() {
@@ -115,12 +107,12 @@ public class Car {
         this.capacity = capacity;
     }
 
-    public double getInitfuel() {
-        return initfuel;
+    public double getInitFuel() {
+        return initFuel;
     }
 
-    public void setInitfuel(double initfuel) {
-        this.initfuel = initfuel;
+    public void setInitFuel(double initFuel) {
+        this.initFuel = initFuel;
     }
 
     public String getStatus() {

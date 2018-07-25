@@ -4,6 +4,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * @author Xiaoliu
+ */
 public class IDCard {
     private Integer IDCardId;
     private String name;

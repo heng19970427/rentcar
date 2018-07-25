@@ -1,29 +1,42 @@
 package com.rentcar.service;
 
-import com.rentcar.dao.UserMapper;
 import com.rentcar.pojo.User;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * @author Xiaoliu
+ * @author Xiaoliu zr
  */
 @Service
-public class UserService {
-    private static Logger logger = Logger.getLogger(UserService.class);
+public interface UserService {
 
-    @Autowired
-    UserMapper userMapper;
+    /**
+     * 根据 roleId 获取该身份的所有用户
+     * @param roleId : 1->警察,2->商家,3->用户
+     * @return List 身份的所有用户
+     */
+    List<User> getUsersByRoleId(int roleId);
 
-    public List<User> getUserByRoleId(int roleId){
-        logger.info("roleId = "+roleId);
-        return userMapper.getUsersByRoleId(roleId);
-    }
+    /**
+     * 获取所有商家信息
+     * @return 所有商家
+     */
+    List<User> getAllUserShop();
 
-    List<User> getAllUserShop(){
-        return userMapper.queryAllUserShop();
-    }
+    /**
+     * 验证用户手机号和密码
+     * @param phone : 手机号
+     * @param password : 密码
+     * @return User对象
+     */
+    User getUserByPhoneAndPassword(String phone, String password);
+
+    /**
+     * 更新用户登录密钥
+     * @param userId : 用户id
+     * @param token : 登录密钥
+     * @return 操作结果
+     */
+    boolean updateUserToken(Integer userId, String token);
 }

@@ -24,7 +24,7 @@ public class PoliceUserController {
     @RequestMapping("getUserByRoleId")
     @ResponseBody
     public List<User> getUserByRoleId(@RequestParam("roleId") int roleId){
-        List<User> users = userService.getUserByRoleId(roleId);
+        List<User> users = userService.getUsersByRoleId(roleId);
         logger.info(users.toString());
         return users;
     }
