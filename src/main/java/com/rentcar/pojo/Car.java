@@ -5,7 +5,7 @@ public class Car {
     private String color;
     private String desc;
     private String carcol;
-    private String fueltype;
+    private String fuelType;
     private String type;
     private String frameId;
     private String brand;
@@ -16,6 +16,7 @@ public class Car {
     private double initfuel;
     private String status;
     User user;
+    User belong;
     public int getCarId() {
         return carId;
     }
@@ -48,12 +49,12 @@ public class Car {
         this.carcol = carcol;
     }
 
-    public String getFueltype() {
-        return fueltype;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setFueltype(String fueltype) {
-        this.fueltype = fueltype;
+    public void setFuelType(String fuelType){
+        this.fuelType = fuelType;
     }
 
     public String getType() {
@@ -134,5 +135,13 @@ public class Car {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User getBelong() {
+        return belong;
+    }
+
+    public void setBelong(User belong) {
+        this.belong = belong;
     }
 }

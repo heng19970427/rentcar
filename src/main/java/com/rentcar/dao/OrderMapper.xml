@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rentcar.dao.OrderMapper">
+    <select id="insertOrder" parameterType="Order">
+        INSERT into `order`
+        VALUES(null,
+        #{user.userId},
+        #{car.carId},
+        #{rentDate},
+        #{returnDate},
+        #{returnDateReal},
+        #{status},
+        #{fee},
+        #{fuelRemain},
+        #{invoice},
+        #{discountPackage.disCountPackageId}
+        )
+    </select>
+</mapper>
