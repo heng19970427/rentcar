@@ -7,15 +7,15 @@ import java.util.Date;
 /**
  * @author Xiaoliu
  */
-public class IDCard {
-    private Integer IDCardId;
+public class IdCard {
+    private Integer idCardId;
     private String name;
     private String sex;
     private String address;
     private String folk;
     @DateTimeFormat(pattern = "yyyyMMdd")
     private Date birthday;
-    private String IDNumber;
+    private String idNumber;
     private String agency;
     @DateTimeFormat(pattern = "yyyyMMdd")
     private Date expireStart;
@@ -25,14 +25,14 @@ public class IDCard {
 
     @Override
     public String toString() {
-        return "IDCard{" +
-                "IDCardId=" + IDCardId +
+        return "IdCard{" +
+                "idCardId=" + idCardId +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 ", folk='" + folk + '\'' +
                 ", birthday=" + birthday +
-                ", IDNumber='" + IDNumber + '\'' +
+                ", idNumber='" + idNumber + '\'' +
                 ", agency='" + agency + '\'' +
                 ", expireStart=" + expireStart +
                 ", expireEnd=" + expireEnd +
@@ -40,12 +40,12 @@ public class IDCard {
                 '}';
     }
 
-    public Integer getIDCardId() {
-        return IDCardId;
+    public Integer getIdCardId() {
+        return idCardId;
     }
 
-    public void setIDCardId(Integer IDCardId) {
-        this.IDCardId = IDCardId;
+    public void setIdCardId(Integer idCardId) {
+        this.idCardId = idCardId;
     }
 
     public String getName() {
@@ -88,12 +88,12 @@ public class IDCard {
         this.birthday = birthday;
     }
 
-    public String getIDNumber() {
-        return IDNumber;
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public void setIDNumber(String IDNumber) {
-        this.IDNumber = IDNumber;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
     public String getAgency() {

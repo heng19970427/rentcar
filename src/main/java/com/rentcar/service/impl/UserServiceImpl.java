@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUserByPhoneAndPassword(String phone, String password) {
-        return null;
+        return userMapper.queryUserByPhoneAndPassword(phone,password);
     }
 
     @Override

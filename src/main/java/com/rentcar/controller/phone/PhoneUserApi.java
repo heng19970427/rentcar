@@ -37,6 +37,7 @@ public class PhoneUserApi {
                 logger.info("用户 "+user.getUsername()+" 登录成功");
                 return user;
             }else {
+                logger.debug("生成uuid"+uuid);
                 return null;
             }
         }else {

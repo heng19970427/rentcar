@@ -11,4 +11,10 @@
         SELECT userId,company,companylocation from `user`
         WHERE roleId=2
     </select>
+
+    <select id="queryUserByPhoneAndPassword" resultType="User">
+        select userId,username,phone,account,email,img,note,verified,verifyId,vipLevel,idCardId,roleId
+        from user
+        where phone=#{phone} and password=#{password}
+    </select>
 </mapper>

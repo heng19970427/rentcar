@@ -80,11 +80,11 @@ UNLOCK TABLES;
 -- Table structure for table `idcard`
 --
 
-DROP TABLE IF EXISTS IDCard;
+DROP TABLE IF EXISTS IdCard;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `idcard` (
-  `IDCardId` int(11) NOT NULL,
+  `idCardId` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `sex` varchar(1) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `idcard` (
   `expireStart` date DEFAULT NULL,
   `expireEnd` date DEFAULT NULL,
   `photo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`IDCardId`)
+  PRIMARY KEY (`idCardId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -103,9 +103,9 @@ CREATE TABLE `idcard` (
 -- Dumping data for table `idcard`
 --
 
-LOCK TABLES IDCard WRITE;
-/*!40000 ALTER TABLE IDCard DISABLE KEYS */;
-/*!40000 ALTER TABLE IDCard ENABLE KEYS */;
+LOCK TABLES IdCard WRITE;
+/*!40000 ALTER TABLE IdCard DISABLE KEYS */;
+/*!40000 ALTER TABLE IdCard ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -344,13 +344,13 @@ CREATE TABLE `user` (
   `verified` tinyint(4) DEFAULT NULL,
   `verify_id` int(11) DEFAULT NULL,
   `vipLevel` int(11) DEFAULT NULL,
-  `IDCardId` int(11) DEFAULT NULL,
+  `idCardId` int(11) DEFAULT NULL,
   `roleId` int(11) DEFAULT NULL,
   PRIMARY KEY (`userId`),
-  KEY `IDCard_id_idx` (`IDCardId`),
+  KEY `IDCard_id_idx` (`idCardId`),
   KEY `vip_level_idx` (`vipLevel`),
   KEY `role_id_idx` (`roleId`),
-  CONSTRAINT `user_IDCard` FOREIGN KEY (`IDCardId`) REFERENCES IDCard (IDCardId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_IDCard` FOREIGN KEY (`idCardId`) REFERENCES IdCard (idCardId) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_role` FOREIGN KEY (`roleId`) REFERENCES `role` (roleId) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_vip` FOREIGN KEY (`vipLevel`) REFERENCES `vip` (vipLevel) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -362,7 +362,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (userId, `username`, `password`, `token`, `company`, `companyLocation`, `phone`, `account`, `email`, `img`, `note`, `verified`, verifyId, vipLevel, IDCardId, roleId) VALUES (3,'顺丰租车','123',NULL,'顺丰租车','吉州区','','','','','',1,1,1,NULL,2);
+INSERT INTO `user` (userId, `username`, `password`, `token`, `company`, `companyLocation`, `phone`, `account`, `email`, `img`, `note`, `verified`, verifyId, vipLevel, idCardId, roleId) VALUES (3,'顺丰租车','123',NULL,'顺丰租车','吉州区','','','','','',1,1,1,NULL,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
