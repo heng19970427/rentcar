@@ -9,11 +9,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * @author Xiaoliu
+ */
 @Controller
-@RequestMapping("user")
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @RequestMapping("user_man")
+    public String userMan(){
+        return "user_man";
+    }
+
+    @RequestMapping("user_notice")
+    public String userNotice(){
+        return "user_notice";
+    }
 
     @RequestMapping("all_shop")
     @ResponseBody

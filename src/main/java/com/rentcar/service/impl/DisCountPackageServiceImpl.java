@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author zr
+ */
 @Service
 public class DisCountPackageServiceImpl implements DisCountPackageService{
     @Autowired
@@ -15,13 +18,5 @@ public class DisCountPackageServiceImpl implements DisCountPackageService{
     @Override
     public List<DisCountPackage> getAllDisCountPackage(int userId) {
         return disCountPackageMapper.queryAllDisCount(userId);
-    }
-
-    public DisCountPackageMapper getDisCountPackageMapper() {
-        return disCountPackageMapper;
-    }
-
-    public void setDisCountPackageMapper(DisCountPackageMapper disCountPackageMapper) {
-        this.disCountPackageMapper = disCountPackageMapper;
     }
 }

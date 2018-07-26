@@ -1,17 +1,52 @@
 package com.rentcar.pojo;
 
+/**
+ * @author Xiaoliu
+ */
 public class User {
-    private int userId;
+    private Integer userId;
     private String username;
     private String password;
+    private String token;
     private String company;
-    private String companylocation;
+    private String companyLocation;
     private String phone;
-    public int getUserId(){
+    private String account;
+    private String email;
+    private String img;
+    private String note;
+    private boolean verified;
+    private Integer verifyId;
+    private Integer vipLevel;
+    private Integer roleId;
+    private IDCard idCard;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                ", company='" + company + '\'' +
+                ", companyLocation='" + companyLocation + '\'' +
+                ", phone='" + phone + '\'' +
+                ", account='" + account + '\'' +
+                ", email='" + email + '\'' +
+                ", img='" + img + '\'' +
+                ", note='" + note + '\'' +
+                ", verified=" + verified +
+                ", verifyId=" + verifyId +
+                ", vipLevel=" + vipLevel +
+                ", roleId=" + roleId +
+                '}';
+    }
+
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -31,6 +66,14 @@ public class User {
         this.password = password;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -39,12 +82,12 @@ public class User {
         this.company = company;
     }
 
-    public String getCompanylocation() {
-        return companylocation;
+    public String getCompanyLocation() {
+        return companyLocation;
     }
 
-    public void setCompanylocation(String companylocation) {
-        this.companylocation = companylocation;
+    public void setCompanyLocation(String companyLocation) {
+        this.companyLocation = companyLocation;
     }
 
     public String getPhone() {
@@ -53,5 +96,77 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public Integer getVerifyId() {
+        return verifyId;
+    }
+
+    public void setVerifyId(Integer verifyId) {
+        this.verifyId = verifyId;
+    }
+
+    public Integer getVipLevel() {
+        return vipLevel;
+    }
+
+    public void setVipLevel(Integer vipLevel) {
+        this.vipLevel = vipLevel;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public IDCard getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(IDCard idCard) {
+        this.idCard = idCard;
     }
 }

@@ -9,11 +9,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * @author zr
+ */
 @Controller
-@RequestMapping("car")
 public class CarController {
     @Autowired
     private CarManagerService carManagerService;
+
+    @RequestMapping("car_info")
+    public String carInfo(){
+        return "car_info";
+    }
+
+    @RequestMapping("car_location")
+    public String carLocation(){
+        return "car_location";
+    }
+
+    @RequestMapping("car_fee")
+    public String carFee(){
+        return "car_fee";
+    }
+
+    @RequestMapping("car_fee_discount")
+    public String carFeeDiscount(){
+        return "car_fee_discount";
+    }
 
     @RequestMapping("all_car")
     @ResponseBody
@@ -21,11 +43,4 @@ public class CarController {
         return carManagerService.getAllCar(userId);
     }
 
-    public CarManagerService getCarManagerService() {
-        return carManagerService;
-    }
-
-    public void setCarManagerService(CarManagerService carManagerService) {
-        this.carManagerService = carManagerService;
-    }
 }

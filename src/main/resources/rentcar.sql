@@ -26,21 +26,20 @@ CREATE TABLE `car` (
   `car_id` int(11) NOT NULL,
   `color` varchar(45) DEFAULT NULL,
   `desc` varchar(255) DEFAULT NULL,
-  `carcol` varchar(45) DEFAULT NULL,
-  `fueltype` varchar(45) DEFAULT NULL,
+  `fuelType` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `frame_id` varchar(45) DEFAULT NULL,
   `brand` varchar(45) DEFAULT NULL,
   `img` varchar(45) DEFAULT NULL,
-  `rentfee` float DEFAULT NULL,
+  `rentFee` float DEFAULT NULL,
   `deposit` float DEFAULT NULL,
   `capacity` float DEFAULT NULL,
-  `initfuel` float DEFAULT NULL,
+  `initFuel` float DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`car_id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `car_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `user_id_idx` (`userId`),
+  CONSTRAINT `car_user` FOREIGN KEY (`userId`) REFERENCES `user` (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,7 +56,7 @@ UNLOCK TABLES;
 -- Table structure for table `discount_package`
 --
 
-DROP TABLE IF EXISTS `discount_package`;
+DROP TABLE IF EXISTS discountPackage;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `discount_package` (
@@ -72,20 +71,20 @@ CREATE TABLE `discount_package` (
 -- Dumping data for table `discount_package`
 --
 
-LOCK TABLES `discount_package` WRITE;
-/*!40000 ALTER TABLE `discount_package` DISABLE KEYS */;
-/*!40000 ALTER TABLE `discount_package` ENABLE KEYS */;
+LOCK TABLES discountPackage WRITE;
+/*!40000 ALTER TABLE discountPackage DISABLE KEYS */;
+/*!40000 ALTER TABLE discountPackage ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `idcard`
 --
 
-DROP TABLE IF EXISTS `idcard`;
+DROP TABLE IF EXISTS IDCard;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `idcard` (
-  `IDCard_id` int(11) NOT NULL,
+  `IDCardId` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `sex` varchar(1) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
@@ -96,7 +95,7 @@ CREATE TABLE `idcard` (
   `expireStart` date DEFAULT NULL,
   `expireEnd` date DEFAULT NULL,
   `photo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`IDCard_id`)
+  PRIMARY KEY (`IDCardId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,9 +103,9 @@ CREATE TABLE `idcard` (
 -- Dumping data for table `idcard`
 --
 
-LOCK TABLES `idcard` WRITE;
-/*!40000 ALTER TABLE `idcard` DISABLE KEYS */;
-/*!40000 ALTER TABLE `idcard` ENABLE KEYS */;
+LOCK TABLES IDCard WRITE;
+/*!40000 ALTER TABLE IDCard DISABLE KEYS */;
+/*!40000 ALTER TABLE IDCard ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,7 +126,7 @@ CREATE TABLE `insurance` (
   `car_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`insurance_id`),
   KEY `car_id_idx` (`car_id`),
-  CONSTRAINT `insurance_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `insurance_car` FOREIGN KEY (`car_id`) REFERENCES `car` (carId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -156,7 +155,7 @@ CREATE TABLE `maintenance` (
   `car_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`maintenance_id`),
   KEY `car_id_idx` (`car_id`),
-  CONSTRAINT `maintenance_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `maintenance_car` FOREIGN KEY (`car_id`) REFERENCES `car` (carId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -183,10 +182,10 @@ CREATE TABLE `notice` (
   `readed` tinyint(4) DEFAULT NULL,
   `time` varchar(45) DEFAULT NULL,
   `level` enum('warning','info') DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`notice_id`),
-  KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `notice_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `user_id_idx` (`userId`),
+  CONSTRAINT `notice_user` FOREIGN KEY (`userId`) REFERENCES `user` (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,7 +207,7 @@ DROP TABLE IF EXISTS `order`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
   `car_id` int(11) DEFAULT NULL,
   `rentdate` date DEFAULT NULL,
   `returndate` date DEFAULT NULL,
@@ -220,11 +219,11 @@ CREATE TABLE `order` (
   `discount_package_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `discount_package_id_idx` (`discount_package_id`),
-  KEY `user_id_idx` (`user_id`),
+  KEY `user_id_idx` (`userId`),
   KEY `car_id_idx` (`car_id`),
-  CONSTRAINT `order_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `order_discount_package` FOREIGN KEY (`discount_package_id`) REFERENCES `discount_package` (`discount_package_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `order_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `order_car` FOREIGN KEY (`car_id`) REFERENCES `car` (carId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `order_discount_package` FOREIGN KEY (`discount_package_id`) REFERENCES discountPackage (discountPackageId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `order_user` FOREIGN KEY (`userId`) REFERENCES `user` (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -250,12 +249,12 @@ CREATE TABLE `peccancy` (
   `location` varchar(45) DEFAULT NULL,
   `time` date DEFAULT NULL,
   `car_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`peccancy_id`),
-  KEY `user_id_idx` (`user_id`),
+  KEY `user_id_idx` (`userId`),
   KEY `car_id_idx` (`car_id`),
-  CONSTRAINT `peccancy_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `peccancy_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `peccancy_car` FOREIGN KEY (`car_id`) REFERENCES `car` (carId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `peccancy_user` FOREIGN KEY (`userId`) REFERENCES `user` (userId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -272,7 +271,7 @@ UNLOCK TABLES;
 -- Table structure for table `repaire`
 --
 
-DROP TABLE IF EXISTS `repaire`;
+DROP TABLE IF EXISTS repair;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `repaire` (
@@ -285,7 +284,7 @@ CREATE TABLE `repaire` (
   `car_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`repaire_id`),
   KEY `car_id_idx` (`car_id`),
-  CONSTRAINT `repaire_car` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `repaire_car` FOREIGN KEY (`car_id`) REFERENCES `car` (carId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -293,9 +292,9 @@ CREATE TABLE `repaire` (
 -- Dumping data for table `repaire`
 --
 
-LOCK TABLES `repaire` WRITE;
-/*!40000 ALTER TABLE `repaire` DISABLE KEYS */;
-/*!40000 ALTER TABLE `repaire` ENABLE KEYS */;
+LOCK TABLES repair WRITE;
+/*!40000 ALTER TABLE repair DISABLE KEYS */;
+/*!40000 ALTER TABLE repair ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -306,10 +305,10 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
-  `role_id` int(11) NOT NULL,
+  `roleId` int(11) NOT NULL,
   `rolename` varchar(45) DEFAULT NULL,
   `needverified` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`role_id`)
+  PRIMARY KEY (`roleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -319,7 +318,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` (`role_id`, `rolename`, `needverified`) VALUES (1,'警官',0),(2,'商家',1),(3,'用户',0);
+INSERT INTO `role` (roleId, `rolename`, needVerify) VALUES (1,'警官',0),(2,'商家',1),(3,'用户',0);
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,12 +330,12 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `token` varchar(45) DEFAULT NULL,
   `company` varchar(45) DEFAULT NULL,
-  `companylocation` varchar(45) DEFAULT NULL,
+  `companyLocation` varchar(45) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `account` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -344,16 +343,16 @@ CREATE TABLE `user` (
   `note` varchar(255) DEFAULT NULL,
   `verified` tinyint(4) DEFAULT NULL,
   `verify_id` int(11) DEFAULT NULL,
-  `vip_level` int(11) DEFAULT NULL,
-  `IDCard_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  KEY `IDCard_id_idx` (`IDCard_id`),
-  KEY `vip_level_idx` (`vip_level`),
-  KEY `role_id_idx` (`role_id`),
-  CONSTRAINT `user_IDCard` FOREIGN KEY (`IDCard_id`) REFERENCES `idcard` (`IDCard_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `user_vip` FOREIGN KEY (`vip_level`) REFERENCES `vip` (`vip_level`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `vipLevel` int(11) DEFAULT NULL,
+  `IDCardId` int(11) DEFAULT NULL,
+  `roleId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`userId`),
+  KEY `IDCard_id_idx` (`IDCardId`),
+  KEY `vip_level_idx` (`vipLevel`),
+  KEY `role_id_idx` (`roleId`),
+  CONSTRAINT `user_IDCard` FOREIGN KEY (`IDCardId`) REFERENCES IDCard (IDCardId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_role` FOREIGN KEY (`roleId`) REFERENCES `role` (roleId) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_vip` FOREIGN KEY (`vipLevel`) REFERENCES `vip` (vipLevel) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -363,7 +362,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`user_id`, `username`, `password`, `token`, `company`, `companylocation`, `phone`, `account`, `email`, `img`, `note`, `verified`, `verify_id`, `vip_level`, `IDCard_id`, `role_id`) VALUES (3,'顺丰租车','123',NULL,'顺丰租车','吉州区','','','','','',1,1,1,NULL,2);
+INSERT INTO `user` (userId, `username`, `password`, `token`, `company`, `companyLocation`, `phone`, `account`, `email`, `img`, `note`, `verified`, verifyId, vipLevel, IDCardId, roleId) VALUES (3,'顺丰租车','123',NULL,'顺丰租车','吉州区','','','','','',1,1,1,NULL,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,9 +374,9 @@ DROP TABLE IF EXISTS `vip`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vip` (
-  `vip_level` int(11) NOT NULL,
+  `vipLevel` int(11) NOT NULL,
   `discount` float DEFAULT NULL,
-  PRIMARY KEY (`vip_level`)
+  PRIMARY KEY (`vipLevel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -387,7 +386,7 @@ CREATE TABLE `vip` (
 
 LOCK TABLES `vip` WRITE;
 /*!40000 ALTER TABLE `vip` DISABLE KEYS */;
-INSERT INTO `vip` (`vip_level`, `discount`) VALUES (1,0.9);
+INSERT INTO `vip` (vipLevel, `discount`) VALUES (1,0.9);
 /*!40000 ALTER TABLE `vip` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
