@@ -2,6 +2,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rentcar.dao.UserMapper">
+    <sql id="user">
+        <if test="userId!=null">
+            userId=#{userId},
+        </if>
+        <if test="username!=null">
+            username=#{username},
+        </if>
+    </sql>
+
+    <resultMap id="userMap" type="User">
+        <id property="userId" column="userId"/>
+        <result property="username" column="username"/>
+        <result property="token" column="token"/>
+        <result property="company" column="company"/>
+        <result property="companyLocation" column="companyLocation"/>
+        <result property="phone" column="phone"/>
+        <result property="account" column="account"/>
+        <result property="email" column="email"/>
+        <result property="img" column="img"/>
+        <result property="note" column="note"/>
+        <result property="verified" column="verified"/>
+        <result property="verifyId" column="verifyId"/>
+        <association property="role" javaType="Role">
+            <id property="roleId" column="roleId"/>
+            <result property="roleName" column="roleName"/>
+            <result property="needVerify" column="needVerify"/>
+        </association>
+        <association property="idCard" javaType="IdCard">
+            <id property="idCardId" column="idCardId"/>
+        </association>
+    </resultMap>
 
     <select id="getUserByRoleId" parameterType="int" resultType="User">
         select * from user where roleId=#{roleId}
@@ -17,4 +48,36 @@
         from user
         where phone=#{phone} and password=#{password}
     </select>
+
+    <select id="queryUserByUserId" resultType="User">
+        select userId
+        from user
+        where userId=#{v}
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user
+        VALUES (
+          null,
+          #{username},
+          #{password},
+          #{token},
+          #{company},
+          #{companyLocation},
+          #{phone},
+          #{account},
+          #{email},
+          #{img},
+          #{note},
+          #{verified},
+          #{verifyId},
+          #{idCard.idCardId},
+          <if test="role==null">
+            DEFAULT
+          </if>
+          <if test="role!=null">
+              #{role.roleId}
+          </if>
+        )
+    </insert>
 </mapper>

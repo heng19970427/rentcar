@@ -16,7 +16,7 @@ public class Car {
     private double deposit;
     private double capacity;
     private double initFuel;
-    private String[] imgPath;
+    private List<Image> images;
     User belong;
 
     public int getCarId() {
@@ -133,11 +133,11 @@ public class Car {
         this.belong = belong;
     }
 
-    public String[] getImgPath() {
-        return imgPath;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setImgPath(String[] imgPath) {
-        this.imgPath = imgPath;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

@@ -3,8 +3,10 @@ package com.rentcar.controller;
 import com.rentcar.pojo.IdCard;
 import com.rentcar.pojo.Order;
 import com.rentcar.pojo.OrderForm;
+import com.rentcar.pojo.User;
 import com.rentcar.service.IdCardService;
 import com.rentcar.service.OrderService;
+import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import java.util.List;
 public class OrderController {
     private static Logger logger = Logger.getLogger(OrderController.class);
     private OrderService orderService;
+    private UserService userService;
     private IdCardService idCardService;
     @RequestMapping("order_man")
     public String orderMan(){
@@ -36,6 +39,7 @@ public class OrderController {
     public String createOrder(OrderForm orderForm){
         logger.debug("");
         Order order=orderForm.getOrder();
+        User user=orderForm.getUser();
         IdCard idCard=orderForm.getIdCard();
         if(idCard==null){
             order.setStatus("未提车");
@@ -43,6 +47,11 @@ public class OrderController {
         else {
             order.setStatus("出租中");
             idCardService.addIdcardInfo(idCard);
+            if(order.getUser().getUserId()==null){
+                //线下租车
+                user.setIdCard(idCard);
+                userService.addUser(user);
+            }
         }
         orderService.createOrder(order);
         return "OK";
@@ -56,19 +65,14 @@ public class OrderController {
         2.还车的时候
             修改订单状态，押金扣除
      */
-    @RequestMapping("alter_order1")
+    @RequestMapping("alter_order")
     @ResponseBody
-    public String alterOrder1(OrderForm orderForm){
+    public String alterOrder(OrderForm orderForm){
         logger.debug("");
         return "OK";
     }
 
-    @RequestMapping("alter_order2")
-    @ResponseBody
-    public String alterOrder2(Order order){
-        logger.debug("");
-        return "OK";
-    }
+
     //获得用户所有订单
     @RequestMapping("order_user_all")
     @ResponseBody
@@ -98,5 +102,9 @@ public class OrderController {
 
     public void setIdCardService(IdCardService idCardService) {
         this.idCardService = idCardService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

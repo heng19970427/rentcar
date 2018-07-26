@@ -1,6 +1,7 @@
 package com.rentcar.dao;
 
 import com.rentcar.pojo.Car;
+import com.rentcar.pojo.Image;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface CarMapper {
    * @Date: 2018/7/26
    */
    List<Car> queryAllUsingCar();
+
+   Image queryCarImgPath(int imageId);
 }

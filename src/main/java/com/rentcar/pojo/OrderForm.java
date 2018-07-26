@@ -3,6 +3,7 @@ package com.rentcar.pojo;
 public class OrderForm {
     private Order order;
     private IdCard idCard;
+    private User user;
 
     public Order getOrder() {
         return order;
@@ -18,5 +19,13 @@ public class OrderForm {
 
     public void setIdCard(IdCard idCard) {
         this.idCard = idCard;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -10,4 +10,9 @@
     <select id="queryAllUsingCar" resultType="Car">
         SELECT * FROM car WHERE `status` ='出租中'
     </select>
+
+    <select id="queryCarImgPath" parameterType="int" resultType="Image">
+        SELECT * FROM image WHERE imageId=#{v}
+    </select>
+
 </mapper>

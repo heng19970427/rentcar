@@ -32,4 +32,6 @@ public class UserController {
     public List<User> getAllUserShop(){
         return userService.getAllUserShop();
     }
+
+
 }
