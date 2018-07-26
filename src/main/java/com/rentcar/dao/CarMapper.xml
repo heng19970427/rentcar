@@ -6,4 +6,8 @@
     <select id="queryCarList" parameterType="int" resultType="Car">
         SELECT * FROM car WHERE belong=#{v}
     </select>
+
+    <select id="queryAllUsingCar" resultType="Car">
+        SELECT * FROM car WHERE `status` ='出租中'
+    </select>
 </mapper>

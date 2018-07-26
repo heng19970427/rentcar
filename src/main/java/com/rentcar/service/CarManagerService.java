@@ -15,4 +15,13 @@ public interface CarManagerService {
      * @return List 所有用户租用车辆
      */
     List<Car> getAllCar(int userId);
+
+    /**
+    * @Description: 获取全区正在出租的车辆
+    * @Param: []
+    * @return: java.util.List<com.rentcar.pojo.Car>
+    * @Author: Zr
+    * @Date: 2018/7/26
+    */
+    List<Car> getAllUsingCar();
 }

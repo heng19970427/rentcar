@@ -8,12 +8,22 @@ public class Order {
     Date returnDate;
     Date returnDateReal;
     String status;
+    double extraDerate;
     double fee;
     double fuelRemain;
     Integer invoice;
+    User belong;
     User user;
     Car car;
     DisCountPackage discountPackage;
+
+    public User getBelong() {
+        return belong;
+    }
+
+    public void setBelong(User belong) {
+        this.belong = belong;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -101,5 +111,13 @@ public class Order {
 
     public void setDiscountPackage(DisCountPackage discountPackage) {
         this.discountPackage = discountPackage;
+    }
+
+    public double getExtraDerate() {
+        return extraDerate;
+    }
+
+    public void setExtraDerate(double extraDerate) {
+        this.extraDerate = extraDerate;
     }
 }

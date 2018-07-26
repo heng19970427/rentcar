@@ -1,22 +1,24 @@
 package com.rentcar.pojo;
 
+import java.util.List;
+
 public class Car {
     private int carId;
     private String color;
     private String desc;
-    private String carcol;
     private String fuelType;
     private String type;
     private String frameId;
     private String brand;
     private String img;
-    private double rentfee;
+    private String status;
+    private double rentFee;
     private double deposit;
     private double capacity;
-    private double initfuel;
-    private String status;
-    User user;
+    private double initFuel;
+    private String[] imgPath;
     User belong;
+
     public int getCarId() {
         return carId;
     }
@@ -39,14 +41,6 @@ public class Car {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public String getCarcol() {
-        return carcol;
-    }
-
-    public void setCarcol(String carcol) {
-        this.carcol = carcol;
     }
 
     public String getFuelType() {
@@ -89,13 +83,7 @@ public class Car {
         this.img = img;
     }
 
-    public double getRentfee() {
-        return rentfee;
-    }
 
-    public void setRentfee(double rentfee) {
-        this.rentfee = rentfee;
-    }
 
     public double getDeposit() {
         return deposit;
@@ -113,12 +101,20 @@ public class Car {
         this.capacity = capacity;
     }
 
-    public double getInitfuel() {
-        return initfuel;
+    public double getRentFee() {
+        return rentFee;
     }
 
-    public void setInitfuel(double initfuel) {
-        this.initfuel = initfuel;
+    public void setRentFee(double rentFee) {
+        this.rentFee = rentFee;
+    }
+
+    public double getInitFuel() {
+        return initFuel;
+    }
+
+    public void setInitFuel(double initFuel) {
+        this.initFuel = initFuel;
     }
 
     public String getStatus() {
@@ -129,19 +125,19 @@ public class Car {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public User getBelong() {
         return belong;
     }
 
     public void setBelong(User belong) {
         this.belong = belong;
+    }
+
+    public String[] getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String[] imgPath) {
+        this.imgPath = imgPath;
     }
 }

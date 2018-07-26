@@ -1,4 +1,10 @@
 package com.rentcar.service;
 
-public class OrderService {
+import com.rentcar.pojo.Order;
+
+import java.util.List;
+
+public interface OrderService {
+    List<Order> getUserAllOrder(int userId);
+    int createOrder(Order order);
 }
