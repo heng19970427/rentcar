@@ -24,4 +24,13 @@ public interface CarManagerService {
     * @Date: 2018/7/26
     */
     List<Car> getAllUsingCar();
+    
+    /** 
+    * @Description: 添加车辆 
+    * @Param: [car] 
+    * @return: int 
+    * @Author: Zr 
+    * @Date: 2018/7/27 
+    */
+    int addCar(Car car);
 }

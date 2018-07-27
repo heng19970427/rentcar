@@ -1,6 +1,7 @@
 package com.rentcar.service.impl;
 
 import com.rentcar.dao.CarMapper;
+import com.rentcar.dao.ImageMapper;
 import com.rentcar.pojo.Car;
 import com.rentcar.pojo.Image;
 import com.rentcar.pojo.User;
@@ -23,6 +24,8 @@ public class CarManagerServiceImpl implements CarManagerService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ImageMapper imageMapper;
     @Override
     public List<Car> getAllCar(int userId) {
         List<Car> carList=carMapper.queryCarList(userId);
@@ -35,7 +38,7 @@ public class CarManagerServiceImpl implements CarManagerService {
             //获取图片封装汽车图片集合
             List<Image> images = new ArrayList<Image>();
             for(int i=0;i<imgPaths.length;i++){
-                Image image = carMapper.queryCarImgPath(Integer.valueOf(imgPaths[i]));
+                Image image = imageMapper.queryCarImgPath(Integer.valueOf(imgPaths[i]));
                 images.add(image);
             }
             car.setImages(images);
@@ -50,11 +53,18 @@ public class CarManagerServiceImpl implements CarManagerService {
         return carMapper.queryAllUsingCar();
     }
 
+    public int addCar(Car car){
+        return carMapper.insertCar(car);
+    }
     public void setCarMapper(CarMapper carMapper) {
         this.carMapper = carMapper;
     }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public void setImageMapper(ImageMapper imageMapper) {
+        this.imageMapper = imageMapper;
     }
 }

@@ -25,5 +25,7 @@ public interface CarMapper {
    */
    List<Car> queryAllUsingCar();
 
-   Image queryCarImgPath(int imageId);
+
+
+   int insertCar(Car car);
 }

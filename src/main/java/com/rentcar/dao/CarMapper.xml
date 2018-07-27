@@ -11,8 +11,23 @@
         SELECT * FROM car WHERE `status` ='出租中'
     </select>
 
-    <select id="queryCarImgPath" parameterType="int" resultType="Image">
-        SELECT * FROM image WHERE imageId=#{v}
-    </select>
-
+    <insert id="insertCar" parameterType="Car">
+        insert into car
+        VALUES (
+        null,
+        #{color},
+        #{desc},
+        #{fuelType},
+        #{type},
+        #{frameId},
+        #{brand},
+        #{img},
+        #{rentFee},
+        #{deposit},
+        #{capacity},
+        #{initFuel},
+        #{status},
+        #{belong.userId}
+        );
+    </insert>
 </mapper>

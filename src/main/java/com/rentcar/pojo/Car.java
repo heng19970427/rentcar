@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Car {
     private int carId;
+    private String plateNumber;
     private String color;
     private String desc;
     private String fuelType;
@@ -18,6 +19,14 @@ public class Car {
     private double initFuel;
     private List<Image> images;
     User belong;
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
+    }
 
     public int getCarId() {
         return carId;
