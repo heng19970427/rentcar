@@ -11,8 +11,8 @@
         INSERT into image
         VALUES (
           null,
-          path,
-          title
+          #{path},
+          #{title}
         )
     </insert>
 </mapper>

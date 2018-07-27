@@ -16,9 +16,9 @@ public class ImageMapperTest extends BaseTest {
         Image image = new Image();
         image.setPath("1.jpg");
         image.setTitle("title");
-        Integer id = imageMapper.saveImage(image);
+        Integer id = imageMapper.insertImage(image);
         System.out.println(id);
-        System.out.println(image.getId());
-        assertEquals(1,(int)image.getId());
+        System.out.println(image.getImageId());
+        assertEquals(1,(int)image.getImageId());
     }
 }

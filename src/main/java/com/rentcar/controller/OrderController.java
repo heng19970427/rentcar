@@ -8,6 +8,7 @@ import com.rentcar.service.IdCardService;
 import com.rentcar.service.OrderService;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,20 +19,18 @@ import java.util.List;
  * @author Xiaoliu
  */
 @Controller
+@RequestMapping("order/api_v1")
 public class OrderController {
     private static Logger logger = Logger.getLogger(OrderController.class);
+    @Autowired
     private OrderService orderService;
+    @Autowired
     private UserService userService;
+    @Autowired
     private IdCardService idCardService;
     @RequestMapping("order_man")
     public String orderMan(){
         return "order_man";
-    }
-
-    @RequestMapping("order_create")
-    public String orderCreate(){
-        logger.debug("");
-        return "order_create";
     }
 
     @RequestMapping("create_order")
@@ -53,10 +52,15 @@ public class OrderController {
                 userService.addUser(user);
             }
         }
+        idCardService.addIdcardInfo(idCard);
         orderService.createOrder(order);
         return "OK";
     }
 
+    @RequestMapping("test_create_order")
+    public String testCreateOrder(){
+        return "testOrder";
+    }
     //商家修改订单
     /*
         两次修改订单:
@@ -71,6 +75,7 @@ public class OrderController {
         logger.debug("");
         return "OK";
     }
+
 
 
     //获得用户所有订单

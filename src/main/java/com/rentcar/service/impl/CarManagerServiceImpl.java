@@ -27,7 +27,7 @@ public class CarManagerServiceImpl implements CarManagerService {
     @Autowired
     private ImageMapper imageMapper;
     @Override
-    public List<Car> getAllCar(int userId) {
+    public List<Car> getAllCar(int userId,String basePath) {
         List<Car> carList=carMapper.queryCarList(userId);
         User belong = userService.getUserByUserId(userId);
         for (Car car : carList){
@@ -39,6 +39,7 @@ public class CarManagerServiceImpl implements CarManagerService {
             List<Image> images = new ArrayList<Image>();
             for(int i=0;i<imgPaths.length;i++){
                 Image image = imageMapper.queryCarImgPath(Integer.valueOf(imgPaths[i]));
+                image.setPath(basePath+image.getPath());
                 images.add(image);
             }
             car.setImages(images);

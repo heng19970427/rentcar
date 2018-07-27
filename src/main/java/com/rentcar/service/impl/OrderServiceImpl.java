@@ -4,9 +4,11 @@ import com.rentcar.dao.OrderMapper;
 import com.rentcar.pojo.Order;
 import com.rentcar.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService{
     @Autowired
     OrderMapper orderMapper;

@@ -15,6 +15,7 @@
         insert into car
         VALUES (
         null,
+        #{plateNumber},
         #{color},
         #{desc},
         #{fuelType},
