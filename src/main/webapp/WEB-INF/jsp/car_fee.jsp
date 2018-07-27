@@ -17,11 +17,13 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container-fluid">
-    <div class="row">
-        <jsp:include page="sidebar.jsp"/>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="mainWindow">
+<div id="app">
+    <el-container>
+        <jsp:include page="header.jsp"/>
+        <el-row>
+            <el-container>
+                <jsp:include page="sidebar.jsp"/>
+                <el-main id="mainWindow">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">租金方案管理</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -34,33 +36,35 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>方案名称</th>
-                                <th>方案描述</th>
-                                <th colspan="2">操作</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>方案名称</th>
+                            <th>方案描述</th>
+                            <th colspan="2">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>按日收取</td>
-                                <td>基础服务费40 + 每日车辆租金</td>
-                                <td><div class="btn-group-sm"><a href="#" class="btn btn-secondary">设置</a><a href="#" class="btn btn-secondary">删除</a></div></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>按日收取</td>
-                                <td>基础服务费40 + 每日车辆租金</td>
-                                <td><div class="btn-group-sm"><a href="#" class="btn btn-secondary">设置</a><a href="#" class="btn btn-secondary">删除</a></div></td>
-                            </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>按日收取</td>
+                            <td>基础服务费40 + 每日车辆租金</td>
+                            <td><div class="btn-group-sm"><a href="#" class="btn btn-secondary">设置</a><a href="#" class="btn btn-secondary">删除</a></div></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>按日收取</td>
+                            <td>基础服务费40 + 每日车辆租金</td>
+                            <td><div class="btn-group-sm"><a href="#" class="btn btn-secondary">设置</a><a href="#" class="btn btn-secondary">删除</a></div></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
 
             </div>
-        </main>
-    </div>
+        </el-main>
+            </el-container>
+        </el-row>
+    </el-container>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

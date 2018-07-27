@@ -32,6 +32,12 @@
 <script src="${pageContext.request.contextPath}/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <%--echarts--%>
 <script src="${pageContext.request.contextPath}/static/js/echarts.common.min.js"></script>
+
+<%--VUE.js--%>
+<script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
+<%--ElementUI--%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/elementui/index.css">
+<script src="${pageContext.request.contextPath}/static/js/elementui/index.js"></script>
 <style>
     .status-num {
         color: #fdfdfd;
@@ -53,9 +59,24 @@
         padding-bottom: 0;
     }
     .navbar-link {
-        color: #fdfdfd;
+        color: #333333;
+        font-weight: bold;
+        text-align: start;
+        vertical-align: middle;
+        line-height: 50px;
     }
     .navbar-link:hover{
-        color: #66afe9;
+        color: #333333;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    ul li a {
+        font-weight: 500;
+        color: #333333;
+    }
+    ul li a:hover {
+        font-weight: 500;
+        color: #333333;
+        text-decoration: none;
     }
 </style>
