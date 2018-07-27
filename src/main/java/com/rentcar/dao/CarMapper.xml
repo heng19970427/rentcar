@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rentcar.dao.CarMapper">
     <select id="queryCarList" parameterType="int" resultType="Car">
-        SELECT * FROM car WHERE userId=#{v}
+        SELECT * FROM car WHERE belong=#{v}
+    </select>
+
+    <select id="queryAllUsingCar" resultType="Car">
+        SELECT * FROM car WHERE `status` ='出租中'
     </select>
 </mapper>

@@ -1,8 +1,7 @@
 package com.rentcar.pojo;
 
-/**
- * @author Xiaoliu
- */
+import java.util.List;
+
 public class Car {
     private int carId;
     private String color;
@@ -12,12 +11,13 @@ public class Car {
     private String frameId;
     private String brand;
     private String img;
+    private String status;
     private double rentFee;
     private double deposit;
     private double capacity;
     private double initFuel;
-    private String status;
-    private User user;
+    private String[] imgPath;
+    User belong;
 
     public int getCarId() {
         return carId;
@@ -47,7 +47,7 @@ public class Car {
         return fuelType;
     }
 
-    public void setFuelType(String fuelType) {
+    public void setFuelType(String fuelType){
         this.fuelType = fuelType;
     }
 
@@ -83,13 +83,7 @@ public class Car {
         this.img = img;
     }
 
-    public double getRentFee() {
-        return rentFee;
-    }
 
-    public void setRentFee(double rentFee) {
-        this.rentFee = rentFee;
-    }
 
     public double getDeposit() {
         return deposit;
@@ -105,6 +99,14 @@ public class Car {
 
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public double getRentFee() {
+        return rentFee;
+    }
+
+    public void setRentFee(double rentFee) {
+        this.rentFee = rentFee;
     }
 
     public double getInitFuel() {
@@ -123,11 +125,19 @@ public class Car {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
+    public User getBelong() {
+        return belong;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBelong(User belong) {
+        this.belong = belong;
+    }
+
+    public String[] getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String[] imgPath) {
+        this.imgPath = imgPath;
     }
 }

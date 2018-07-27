@@ -18,6 +18,16 @@ public class CarManagerServiceImpl implements CarManagerService {
 
     @Override
     public List<Car> getAllCar(int userId) {
-        return carMapper.queryCarList(userId);
+        List<Car> carList=carMapper.queryCarList(userId);
+        for (Car car : carList){
+            String[] imgPaths = car.getImg().split(";");
+            car.setImgPath(imgPaths);
+        }
+        return carList;
+    }
+
+    @Override
+    public List<Car> getAllUsingCar() {
+        return carMapper.queryAllUsingCar();
     }
 }

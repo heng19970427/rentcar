@@ -13,6 +13,7 @@ import java.util.List;
  * @author zr XiaoLiu
  */
 @Controller
+@RequestMapping("car/api_v1")
 public class CarController {
     @Autowired
     private CarManagerService carManagerService;

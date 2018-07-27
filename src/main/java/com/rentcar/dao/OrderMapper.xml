@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rentcar.dao.OrderMapper">
+    <insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId" keyColumn="orderId" parameterType="Order">
+        INSERT into `order`
+        VALUES(null,
+        #{belong.userId},
+        #{user.userId},
+        #{car.carId},
+        #{rentDate},
+        #{returnDate},
+        #{returnDateReal},
+        #{status},
+        #{extraDerate},
+        #{fee},
+        #{fuelRemain},
+        #{invoice},
+        #{discountPackage.disCountPackageId}
+        )
+    </insert>
+
+    <resultMap id="order_user_all" type="Order">
+        <id property="orderId" column="orderId"/>
+        <result property="rentDate" column="rentDate"/>
+        <result property="returnDate" column="returnDate"/>
+        <result property="returnDateReal" column="returnDateReal"/>
+        <result property="status" column="status"/>
+        <result property="extraDerate" column="extraDerate"/>
+        <result property="fee" column="fee"/>
+        <result property="fuelRemain" column="fuelRemain"/>
+        <result property="invoice" column="invoice"/>
+        <association property="belong" javaType="User">
+            <id property="userId" column="userId"/>
+        </association>
+        <association property="user" javaType="User">
+            <id property="userId" column="userId"/>
+        </association>
+        <association property="car" javaType="Car">
+            <id property="carId" column="carId"/>
+            <result property="color" column="color"/>
+            <result property="desc" column="desc"/>
+            <result property="fuelType" column="fuelType"/>
+            <result property="type" column="type"/>
+            <result property="frameId" column="frameId"/>
+            <result property="brand" column="brand"/>
+            <result property="img" column="img"/>
+            <result property="rentfee" column="rentfee"/>
+            <result property="deposit" column="deposit"/>
+            <result property="capacity" column="capacity"/>
+            <result property="initfuel" column="initfuel"/>
+            <result property="status" column="status"/>
+        </association>
+        <association property="discountPackage" javaType="DisCountPackage">
+            <id property="disCountPackageId" column="disCountPackageId"/>
+            <result property="disCountFee" column="disCountFee"/>
+            <result property="day" column="day"/>
+        </association>
+    </resultMap>
+
+    <select id="queryUserAllOrder" parameterType="int" resultMap="order_user_all">
+        SELECT o.orderId,
+        o.belong,
+        o.userId,
+        o.rentDate,
+        o.returnDate,
+        o.returnDateReal,
+        o.`status`,
+        o.extraDerate,
+        o.fee,
+        o.fuelRemain,
+        o.invoice,
+        c.carId,
+        c.color,
+        c.`desc`,
+        c.fuelType,
+        c.type,
+        c.frameId,
+        c.brand,
+        c.img,
+        c.rentFee,
+        c.deposit,
+        c.capacity,
+        c.initFuel,
+        c.`status`,
+        d.discountPackageId,
+        d.discountFee
+        from `order` o
+        LEFT JOIN car c
+        on o.carId=c.carId
+        LEFT JOIN discountPackage d
+        on o.discountPackageId=d.discountPackageId
+        WHERE o.userId=#{v}
+    </select>
+
+    <update id="updateOrder" parameterType="Order">
+        UPDATE `order`
+        set carId=#{car.carId},
+        rentDate=#{rentDate},
+        returnDate=#{returnDate},
+        returnDateReal=#{returnDateReal},
+        `status`=#{status},
+        extraDerate=#{extraDerate},
+        fee=#{fee},
+        fuelRemain=#{fuelRemain},
+        invoice=#{invoice},
+        discountPackageId=#{discountPackage.disCountPackageId}
+        WHERE
+        orderId=#{orderId}
+    </update>
+</mapper>
