@@ -66,47 +66,51 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container-fluid">
-    <div class="row">
-        <jsp:include page="sidebar.jsp"/>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="mainWindow">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">已租出车辆管理</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button class="btn btn-sm btn-outline-secondary">切换显示模式</button>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="carMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span data-feather="bookmark"></span>
-                            车型选择
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="carMenu">
-                            <a href="#" class="dropdown-item">全部</a>
-                            <a href="#" class="dropdown-item">SUV</a>
-                            <a href="#" class="dropdown-item">超跑</a>
-                            <a href="#" class="dropdown-item">卡车</a>
+<div id="app">
+    <el-container>
+        <jsp:include page="header.jsp"/>
+        <el-row>
+            <el-container>
+                <jsp:include page="sidebar.jsp"/>
+                <el-main id="mainWindow">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                        <h1 class="h2">已租出车辆管理</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <button class="btn btn-sm btn-outline-secondary">切换显示模式</button>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="carMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span data-feather="bookmark"></span>
+                                    车型选择
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="carMenu">
+                                    <a href="#" class="dropdown-item">全部</a>
+                                    <a href="#" class="dropdown-item">SUV</a>
+                                    <a href="#" class="dropdown-item">超跑</a>
+                                    <a href="#" class="dropdown-item">卡车</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <div id="outer-box">
-                    <div id="mapContainer" tabindex="0"></div>
-                    <div id="panel">
-                        <div id="listTitle">
-                            <h4>租出车辆</h4>
+                    <div>
+                        <div id="outer-box">
+                            <div id="mapContainer" tabindex="0"></div>
+                            <div id="panel">
+                                <div id="listTitle">
+                                    <h4>租出车辆</h4>
+                                </div>
+                                <ul id="car-list"></ul>
+                            </div>
                         </div>
-                        <ul id="car-list"></ul>
-                    </div>
-                </div>
 
-            </div>
-        </main>
-    </div>
+                    </div>
+                </el-main>
+            </el-container>
+        </el-row>
+    </el-container>
 </div>
-<jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 <script src="https://webapi.amap.com/maps?v=1.4.8&key=ec6c5c2047ad8f404100f030755d33ce"></script>
 <%--UI 组件库--%>
 <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>

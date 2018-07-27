@@ -24,11 +24,13 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<div class="container-fluid">
-    <div class="row">
-        <jsp:include page="sidebar.jsp"/>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="mainWindow">
+<div id="app">
+    <el-container>
+        <jsp:include page="header.jsp"/>
+        <el-row>
+            <el-container>
+                <jsp:include page="sidebar.jsp"/>
+                <el-main id="mainWindow">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">订单管理</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -123,10 +125,12 @@
                     </table>
                 </div>
             </div>
-        </main>
-    </div>
+        </el-main>
+            </el-container>
+        </el-row>
+    </el-container>
 </div>
-<jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>
 

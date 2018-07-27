@@ -31,7 +31,7 @@ public interface UserMapper {
      * @param password : 密码
      * @return User对象
      */
-    User queryUserByPhoneAndPassword(String phone, String password);
+    User queryUserByPhoneAndPassword(@Param("phone") String phone,@Param("password") String password);
 
     /**
      * 更新用户登录密钥

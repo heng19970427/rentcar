@@ -6,14 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">租车管理系统</a>
-    <ul class="nav px-3">
-        <li class="nav-item">
-            <a href="#" class="nav-link navbar-link">顺旺租车</a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link navbar-link">注销</a>
-        </li>
-    </ul>
-</nav>
+<el-header style="height: 50px" id="header">
+    <el-row>
+        <el-col :span="5">
+            <div style="min-height: 50px;border-radius: 5px;">
+                <a href="#" class="navbar-link">租车管理系统</a>
+            </div>
+        </el-col>
+        <el-col :span="2" style="float: right">
+            <div style="min-height: 50px;border-radius: 5px;">
+                <a href="#" class="navbar-link">注销</a>
+            </div>
+        </el-col>
+        <el-col :span="3" style="float: right" v-if="user != null">
+            <div style="min-height: 50px;border-radius: 5px; text-align: center; padding-top: 14px">
+                <span style="font-weight: bold">{{user.name}}</span>
+            </div>
+        </el-col>
+    </el-row>
+</el-header>
