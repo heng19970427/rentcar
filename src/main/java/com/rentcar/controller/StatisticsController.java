@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Xiaoliu
  */
 @Controller
+@RequestMapping("api_v1/statistics")
 public class StatisticsController {
 
     @RequestMapping("statistics_month")

@@ -18,7 +18,7 @@ import java.util.List;
  * @author Xiaoliu
  */
 @Controller
-@RequestMapping("order/api_v1")
+@RequestMapping("api_v1/order")
 public class OrderController {
     private static Logger logger = Logger.getLogger(OrderController.class);
     @Autowired

@@ -15,7 +15,7 @@ import java.util.List;
  * @author Xiaoliu
  */
 @Controller
-@RequestMapping("police")
+@RequestMapping("api_v1/police")
 public class PoliceUserController {
     private static Logger logger = Logger.getLogger(PoliceUserController.class);
     @Autowired

@@ -14,7 +14,7 @@ import java.util.List;
  * @author Xiaoliu
  */
 @Controller
-@RequestMapping("user/api_v1")
+@RequestMapping("api_v1/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -39,6 +39,9 @@ public class UserController {
     public Response checkToken(String token){
         Response response=new Response();
         User user=userService.checkToken(token);
+        if(user!=null){
+
+        }
         return response;
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * @author zr
  */
 @Controller
-@RequestMapping("police/api_v1")
+@RequestMapping("api_v1/police")
 public class PoliceCarController {
     @Autowired
     private CarManagerService carManagerService;

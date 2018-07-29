@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Xiaoliu
  */
 @Controller
+@RequestMapping("api_v1/carService")
 public class CarServiceController {
 
     @RequestMapping("carservice_insurance")

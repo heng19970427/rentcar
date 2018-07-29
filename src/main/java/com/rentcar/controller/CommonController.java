@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Xiaoliu
  */
 @RestController
-@RequestMapping("common/api_v1")
+@RequestMapping("api_v1/common")
 public class CommonController {
     private static Logger logger = Logger.getLogger(CommonController.class);
     @Autowired

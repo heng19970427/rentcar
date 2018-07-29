@@ -22,7 +22,7 @@ import java.util.List;
  * @author zr XiaoLiu
  */
 @Controller
-@RequestMapping("car/api_v1")
+@RequestMapping("api_v1/car")
 public class CarController {
     private static Logger logger = Logger.getLogger(CarController.class);
     @Autowired

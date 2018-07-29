@@ -13,7 +13,7 @@ import java.util.List;
  * @author zr
  */
 @Controller
-@RequestMapping("discount/api_v1")
+@RequestMapping("api_v1/discount")
 public class DisCountPackageController {
     @Autowired
     private DisCountPackageService disCountPackageService;
