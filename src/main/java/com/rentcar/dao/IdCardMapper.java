@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 /**
  * @author Xiaoliu
  */
-public interface IDCardMapper {
+public interface IdCardMapper {
 
     /**
      * 根据 IDCardId 查询 身份证
@@ -15,5 +15,7 @@ public interface IDCardMapper {
      * @return 身份证对象 IdCard
      */
     @Select("select * from IdCard where IDCardId=#{id}")
-    public IdCard getIDCardByIDCardId(@Param("id") Integer idCardId);
+     IdCard getIDCardByIDCardId(@Param("id") Integer idCardId);
+
+    int insertIdCard(IdCard idCard);
 }

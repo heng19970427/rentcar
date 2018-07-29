@@ -2,6 +2,7 @@ package com.rentcar.service.impl;
 
 import com.rentcar.dao.CarMapper;
 import com.rentcar.dao.UserMapper;
+import com.rentcar.pojo.IdCard;
 import com.rentcar.pojo.User;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
@@ -42,4 +43,16 @@ public class UserServiceImpl implements UserService{
             return false;
         }
     }
+
+    @Override
+    public User getUserByUserId(int userId) {
+        return userMapper.queryUserByUserId(userId);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.insertUser(user);
+    }
+
+
 }

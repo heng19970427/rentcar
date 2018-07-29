@@ -1,22 +1,17 @@
 package com.rentcar.pojo;
 
-import org.springframework.web.multipart.MultipartFile;
-
-/**
- * @author Xiaoliu
- */
 public class Image {
-    private Integer id;
-    private String path;
-    private String title;
-    private MultipartFile img;
+    int imageId;
+    String path;
+    String title;
 
-    public Integer getId() {
-        return id;
+
+    public int getImageId() {
+        return imageId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
     }
 
     public String getPath() {
@@ -33,13 +28,5 @@ public class Image {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public MultipartFile getImg() {
-        return img;
-    }
-
-    public void setImg(MultipartFile img) {
-        this.img = img;
     }
 }

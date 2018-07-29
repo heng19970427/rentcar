@@ -18,7 +18,7 @@ public class DisCountPackageController {
     @Autowired
     private DisCountPackageService disCountPackageService;
 
-    @RequestMapping("discount_all")
+    @RequestMapping("get_allDiscount")
     @ResponseBody
     public List<DisCountPackage> getAllDisCountPackage(int userId){
         return disCountPackageService.getAllDisCountPackage(userId);

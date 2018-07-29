@@ -20,25 +20,5 @@ public class CommonController {
     @Autowired
     ImageService imageService;
 
-    @RequestMapping("upload_image")
-    public Response uploadImage(Image image, HttpServletRequest request){
-        Response response = new Response();
-        if (image.getImg() != null){
-            String path = request.getSession().getServletContext().getRealPath("/static/upload/");
-            image.setPath(path);
-            if (imageService.saveImage(image)){
-                response.setCode(0);
-                response.setMsg("保存成功");
-            }else {
-                response.setCode(1);
-                response.setMsg("保存失败,请重试!");
-            }
-            image.setImg(null);
-            response.setData(image);
-        }else {
-            response.setCode(-1);
-            response.setMsg("请检查请求, 未接收到图片");
-        }
-        return response;
-    }
+
 }

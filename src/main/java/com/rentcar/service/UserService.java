@@ -1,5 +1,6 @@
 package com.rentcar.service;
 
+import com.rentcar.pojo.IdCard;
 import com.rentcar.pojo.User;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +40,16 @@ public interface UserService {
      * @return 操作结果
      */
     boolean updateUserToken(Integer userId, String token);
+
+    User getUserByUserId(int userId);
+
+    /**
+    * @Description: 添加用户
+    * @Param: [user]
+    * @return: void
+    * @Author: Zr
+    * @Date: 2018/7/26
+    */
+    void addUser(User user);
+
 }

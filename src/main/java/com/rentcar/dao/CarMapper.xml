@@ -10,4 +10,25 @@
     <select id="queryAllUsingCar" resultType="Car">
         SELECT * FROM car WHERE `status` ='出租中'
     </select>
+
+    <insert id="insertCar" parameterType="Car">
+        insert into car
+        VALUES (
+        null,
+        #{plateNumber},
+        #{color},
+        #{desc},
+        #{fuelType},
+        #{type},
+        #{frameId},
+        #{brand},
+        #{img},
+        #{rentFee},
+        #{deposit},
+        #{capacity},
+        #{initFuel},
+        #{status},
+        #{belong.userId}
+        );
+    </insert>
 </mapper>

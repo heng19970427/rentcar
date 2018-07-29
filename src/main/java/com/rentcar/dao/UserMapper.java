@@ -41,4 +41,22 @@ public interface UserMapper {
      */
     @Update("update user set token=#{token} where userId=#{userId}")
     int updateUserToken(@Param("userId") Integer userId,@Param("token") String token);
+
+    /**
+    * @Description: 根据userId查询用户
+    * @Param: [userId]
+    * @return: com.rentcar.pojo.User
+    * @Author: Zr
+    * @Date: 2018/7/26
+    */
+    User queryUserByUserId(int userId);
+
+    /**
+    * @Description: 添加用户
+    * @Param: [user]
+    * @return: void
+    * @Author: Zr
+    * @Date: 2018/7/26
+    */
+    void insertUser(User user);
 }

@@ -17,30 +17,10 @@ public class User {
     private String note;
     private boolean verified;
     private Integer verifyId;
-    private Integer vipLevel;
-    private Integer roleId;
-    private Integer idCardId;
+    private Role role;
+    private IdCard idCard;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", token='" + token + '\'' +
-                ", company='" + company + '\'' +
-                ", companyLocation='" + companyLocation + '\'' +
-                ", phone='" + phone + '\'' +
-                ", account='" + account + '\'' +
-                ", email='" + email + '\'' +
-                ", img='" + img + '\'' +
-                ", note='" + note + '\'' +
-                ", verified=" + verified +
-                ", verifyId=" + verifyId +
-                ", vipLevel=" + vipLevel +
-                ", roleId=" + roleId +
-                '}';
-    }
+
 
     public Integer getUserId() {
         return userId;
@@ -146,27 +126,19 @@ public class User {
         this.verifyId = verifyId;
     }
 
-    public Integer getVipLevel() {
-        return vipLevel;
+    public Role getRole() {
+        return role;
     }
 
-    public void setVipLevel(Integer vipLevel) {
-        this.vipLevel = vipLevel;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public IdCard getIdCard() {
+        return idCard;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    public Integer getIdCardId() {
-        return idCardId;
-    }
-
-    public void setIdCardId(Integer idCardId) {
-        this.idCardId = idCardId;
+    public void setIdCard(IdCard idCard) {
+        this.idCard = idCard;
     }
 }
