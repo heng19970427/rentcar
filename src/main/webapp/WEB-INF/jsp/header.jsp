@@ -13,14 +13,14 @@
                 <a href="#" class="navbar-link">租车管理系统</a>
             </div>
         </el-col>
-        <el-col :span="2" style="float: right">
-            <div style="min-height: 50px;border-radius: 5px;">
-                <a href="#" class="navbar-link">注销</a>
+        <el-col :span="2" :offset="15" v-if="user != null">
+            <div style="min-height: 50px;border-radius: 5px; text-align: center; padding-top: 14px">
+                <span style="font-weight: bold">{{user.username}}</span>
             </div>
         </el-col>
-        <el-col :span="3" style="float: right" v-if="user != null">
-            <div style="min-height: 50px;border-radius: 5px; text-align: center; padding-top: 14px">
-                <span style="font-weight: bold">{{user.name}}</span>
+        <el-col :span="2">
+            <div style="min-height: 50px;border-radius: 5px;">
+                <a href="#" class="navbar-link">注销</a>
             </div>
         </el-col>
     </el-row>

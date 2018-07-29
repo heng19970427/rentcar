@@ -35,21 +35,20 @@ public class OrderController {
     @ResponseBody
     public String createOrder(OrderForm orderForm){
         logger.debug("");
-        Order order=orderForm.getOrder();
         IdCard idCard=orderForm.getIdCard();
         if(idCard==null){
-            order.setStatus("未提车");
+            orderForm.setStatus("未提车");
         }
         else {
-            order.setStatus("出租中");
+            orderForm.setStatus("出租中");
             idCardService.addIdcardInfo(idCard);
         }
-        orderService.createOrder(order);
+        orderService.createOrder(orderForm);
         return "OK";
     }
 
     //商家修改订单
-    /*
+    /**
         两次修改订单:
         1.提车的时候
             上传身份证信息，userId为空，创建用户
@@ -69,7 +68,12 @@ public class OrderController {
         logger.debug("");
         return "OK";
     }
-    //获得用户所有订单
+
+    /**
+     * 获得用户所有订单
+     * @param userId 用户id
+     * @return json
+     */
     @RequestMapping("order_user_all")
     @ResponseBody
     public List<Order> getUserAllOrder(int userId){

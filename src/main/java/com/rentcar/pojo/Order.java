@@ -1,11 +1,16 @@
 package com.rentcar.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Order {
     int orderId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date rentDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date returnDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date returnDateReal;
     String status;
     double extraDerate;

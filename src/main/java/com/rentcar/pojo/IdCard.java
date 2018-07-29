@@ -13,14 +13,13 @@ public class IdCard {
     private String sex;
     private String address;
     private String folk;
-    @DateTimeFormat(pattern = "yyyyMMdd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private String idNumber;
     private String agency;
-    @DateTimeFormat(pattern = "yyyyMMdd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expireStart;
-    @DateTimeFormat(pattern = "yyyyMMdd")
-    private Date expireEnd;
+    private String expireEnd;
     private String photo;
 
     @Override
@@ -112,11 +111,11 @@ public class IdCard {
         this.expireStart = expireStart;
     }
 
-    public Date getExpireEnd() {
+    public String getExpireEnd() {
         return expireEnd;
     }
 
-    public void setExpireEnd(Date expireEnd) {
+    public void setExpireEnd(String expireEnd) {
         this.expireEnd = expireEnd;
     }
 

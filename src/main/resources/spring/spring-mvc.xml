@@ -9,6 +9,10 @@
     <!--启用注解驱动-->
     <mvc:annotation-driven/>
 
+    <mvc:cors>
+        <mvc:mapping path="/**"/>
+    </mvc:cors>
+
     <!--默认servlet 处理静态资源响应-->
     <mvc:default-servlet-handler/>
 
