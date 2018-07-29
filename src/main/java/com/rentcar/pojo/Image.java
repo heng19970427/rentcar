@@ -5,7 +5,6 @@ public class Image {
     String path;
     String title;
 
-
     public int getImageId() {
         return imageId;
     }

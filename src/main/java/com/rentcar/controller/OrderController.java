@@ -9,17 +9,17 @@ import com.rentcar.service.OrderService;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
  * @author Xiaoliu
  */
-@Controller
-@RequestMapping("order/api_v1")
+@RestController
+@RequestMapping("api_v1/order")
 public class OrderController {
     private static Logger logger = Logger.getLogger(OrderController.class);
     @Autowired
@@ -28,10 +28,6 @@ public class OrderController {
     private UserService userService;
     @Autowired
     private IdCardService idCardService;
-    @RequestMapping("order_man")
-    public String orderMan(){
-        return "order_man";
-    }
 
     @RequestMapping("create_order")
     @ResponseBody
@@ -57,12 +53,7 @@ public class OrderController {
         return "OK";
     }
 
-    @RequestMapping("test_create_order")
-    public String testCreateOrder(){
-        return "testOrder";
-    }
-    //商家修改订单
-    /*
+    /**商家修改订单
         两次修改订单:
         1.提车的时候
             上传身份证信息，userId为空，创建用户
@@ -76,8 +67,6 @@ public class OrderController {
         return "OK";
     }
 
-
-
     //获得用户所有订单
     @RequestMapping("order_user_all")
     @ResponseBody
@@ -85,31 +74,4 @@ public class OrderController {
        return orderService.getUserAllOrder(userId);
     }
 
-    public static Logger getLogger() {
-        return logger;
-    }
-
-    public static void setLogger(Logger logger) {
-        OrderController.logger = logger;
-    }
-
-    public OrderService getOrderService() {
-        return orderService;
-    }
-
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
-    public IdCardService getIdCardService() {
-        return idCardService;
-    }
-
-    public void setIdCardService(IdCardService idCardService) {
-        this.idCardService = idCardService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 }

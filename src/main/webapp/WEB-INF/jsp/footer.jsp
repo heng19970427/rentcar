@@ -7,8 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script>
-    const baseUrl = 'http://car.xiaoliublog.cn:8080';
-    axios.defaults.baseURL = 'http://car.xiaoliublog.cn:8080/Rentcar';
+    axios.defaults.baseURL = '/Rentcar';
     function isValidPhone(phone) {
         const reg = /^1[3|4|5|7|8][0-9]\d{8}$/;
         return reg.test(phone);
