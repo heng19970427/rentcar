@@ -13,10 +13,10 @@
 </head>
 <body>
 <div id="app">
-    <el-container>
+    <el-container :direction="vertical">
         <jsp:include page="header.jsp"/>
         <el-row>
-            <el-container>
+            <el-container :direction="horizontal">
                 <jsp:include page="sidebar.jsp"/>
                 <el-main id="mainWindow">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">

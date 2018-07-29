@@ -35,6 +35,7 @@
 
 <%--VUE.js--%>
 <script src="${pageContext.request.contextPath}/static/js/vue.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/axios.min.js"></script>
 <%--ElementUI--%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/elementui/index.css">
 <script src="${pageContext.request.contextPath}/static/js/elementui/index.js"></script>

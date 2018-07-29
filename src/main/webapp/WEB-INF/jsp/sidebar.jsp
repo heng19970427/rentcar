@@ -37,7 +37,7 @@
             </el-menu-item>
         </el-submenu>
         <el-submenu index="3">
-            <template slot="title"><i class="el-icon-location"></i>车辆服务</template>
+            <template slot="title"><i class="el-icon-location-outline"></i>车辆服务</template>
             <el-menu-item index="3-1">
                 <a href="${pageContext.request.contextPath}/carservice_insurance">
                     <span>车辆保险管理</span>
@@ -74,7 +74,7 @@
         </el-submenu>
         <el-menu-item index="5">
             <a href="${pageContext.request.contextPath}/order_man">
-                <i class="el-icon-view"></i><span slot="title">订单管理</span>
+                <i class="el-icon-document"></i><span slot="title">订单管理</span>
             </a>
         </el-menu-item>
         <el-submenu index="6">

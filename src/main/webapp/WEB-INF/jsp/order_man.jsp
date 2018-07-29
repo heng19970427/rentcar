@@ -40,91 +40,46 @@
                     <div class="btn-group mr-2">
                         <a href="${pageContext.request.contextPath}/order_create" class="btn btn-outline-secondary">新增订单</a>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="orderMenu"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span data-feather="bookmark"></span>
-                            订单状态选择
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="orderMenu">
-                            <a href="#" class="dropdown-item">全部</a>
-                            <a href="#" class="dropdown-item">出租中</a>
-                            <a href="#" class="dropdown-item">已逾期</a>
-                            <a href="#" class="dropdown-item">已完成</a>
-                        </div>
-                    </div>
+                    <%--<div class="dropdown">--%>
+                        <%--<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="orderMenu"--%>
+                                <%--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                            <%--<span data-feather="bookmark"></span>--%>
+                            <%--订单状态选择--%>
+                        <%--</button>--%>
+                        <%--<div class="dropdown-menu" aria-labelledby="orderMenu">--%>
+                            <%--<a href="#" class="dropdown-item">全部</a>--%>
+                            <%--<a href="#" class="dropdown-item">出租中</a>--%>
+                            <%--<a href="#" class="dropdown-item">已逾期</a>--%>
+                            <%--<a href="#" class="dropdown-item">已完成</a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
             </div>
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>订单编号</th>
-                            <th>租车人</th>
-                            <th>车辆颜色</th>
-                            <th>车辆型号</th>
-                            <th>车牌号码</th>
-                            <th>订单状态</th>
-                            <th>GPS位置查看</th>
-                            <th>订单操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>4578001</td>
-                            <td>令狐冲</td>
-                            <td>白色</td>
-                            <td>奥迪A80923</td>
-                            <td>京N88963</td>
-                            <td>出租中</td>
-                            <td><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/car_location">查看</a></td>
-                            <td><a class="btn btn-outline-secondary" href="#">打印发票</a></td>
-                        </tr>
-                        <tr>
-                            <td>4578001</td>
-                            <td>令狐冲</td>
-                            <td>白色</td>
-                            <td>奥迪A80923</td>
-                            <td>京N88963</td>
-                            <td>已完成</td>
-                            <td><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/car_location">查看</a></td>
-                            <td><a class="btn btn-outline-secondary" href="#">打印发票</a></td>
-                        </tr>
-                        <tr>
-                            <td>4578001</td>
-                            <td>令狐冲</td>
-                            <td>白色</td>
-                            <td>奥迪A80923</td>
-                            <td>京N88963</td>
-                            <td>出租中</td>
-                            <td><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/car_location">查看</a></td>
-                            <td><a class="btn btn-outline-secondary" href="#">打印发票</a></td>
-                        </tr>
-                        <tr>
-                            <td>4578001</td>
-                            <td>令狐冲</td>
-                            <td>白色</td>
-                            <td>奥迪A80923</td>
-                            <td>京N88963</td>
-                            <td>已完成</td>
-                            <td><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/car_location">查看</a></td>
-                            <td><a class="btn btn-outline-secondary" href="#">打印发票</a></td>
-                        </tr>
-                        <tr>
-                            <td>4578001</td>
-                            <td>令狐冲</td>
-                            <td>白色</td>
-                            <td>奥迪A80923</td>
-                            <td>京N88963</td>
-                            <td>出租中</td>
-                            <td><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/car_location">查看</a></td>
-                            <td><a class="btn btn-outline-secondary" href="#">打印发票</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <el-row :span="24">
+            <el-table
+                    :data="orders"
+                    border
+                    style="width: 100%">
+                <el-table-column
+                        prop="orderId"
+                        label="ID">
+                </el-table-column>
+                <el-table-column
+                        prop="car.type"
+                        label="汽车型号">
+                </el-table-column>
+                <el-table-column
+                        prop="phone"
+                        label="联系电话">
+                </el-table-column>
+                <el-table-column
+                        prop="status"
+                        label="订单状态"
+                        :filters="[{text: '出租中', value: '出租中'}, {text: '已完成', value: '已完成'}, {text: '已逾期', value: '已逾期'}, {text: '未提车', value: '未提车'}]"
+                        :filter-method="filterHandler">
+                </el-table-column>
+            </el-table>
+        </el-row>
         </el-main>
             </el-container>
         </el-row>
