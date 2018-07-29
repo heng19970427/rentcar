@@ -16,7 +16,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class OrderMapperTest extends BaseTest {
-
     @Autowired
     private OrderMapper orderMapper;
     static Order order;
@@ -37,6 +36,7 @@ public class OrderMapperTest extends BaseTest {
         order.setUser(user);
         order.setDiscountPackage(disCountPackage);
         order.setFee(3500);
+        order.setPhone("15213467894");
         order.setFuelRemain(3);
         order.setStatus("出租中");
         order.setInvoice(0);
@@ -49,7 +49,6 @@ public class OrderMapperTest extends BaseTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
     @Test
@@ -61,8 +60,8 @@ public class OrderMapperTest extends BaseTest {
 
     @Test
     public void testqueryUserAllOrder(){
-        List<Order> orders = orderMapper.queryUserAllOrder(3);
-        assertEquals(2,orders.size());
+        List<Order> orders = orderMapper.queryUserAllOrder(3,null,"出租中");
+        assertEquals(1,orders.size());
     }
 
     @Test

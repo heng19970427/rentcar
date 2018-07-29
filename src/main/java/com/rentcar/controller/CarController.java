@@ -51,10 +51,10 @@ public class CarController {
         return "car_fee_discount";
     }
 
-    @RequestMapping("all_car")
+    @RequestMapping("get_allCar")
     @ResponseBody
     public List<Car> getAllCar(int userId,HttpServletRequest request){
-        String basePath = request.getSession().getServletContext().getRealPath("/")+"static\\upload\\";
+        String basePath=request.getContextPath();
         return carManagerService.getAllCar(userId,basePath);
     }
 

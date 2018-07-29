@@ -59,4 +59,15 @@ public interface UserMapper {
     * @Date: 2018/7/26
     */
     void insertUser(User user);
+    
+    /** 
+    * @Description: 根据电话号码查询用户 
+    * @Param: [phone] 
+    * @return: com.rentcar.pojo.User 
+    * @Author: Zr 
+    * @Date: 2018/7/28 
+    */
+    User queryUserByPhone(String phone);
+
+    User queryUserByToken(String token);
 }

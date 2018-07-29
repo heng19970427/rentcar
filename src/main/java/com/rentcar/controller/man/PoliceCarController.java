@@ -23,7 +23,7 @@ public class PoliceCarController {
         return "police/car_manager";
     }
 
-    @RequestMapping("car_using")
+    @RequestMapping("get_AllUsingCar")
     public List<Car> getAllUsingCar(){
        return carManagerService.getAllUsingCar();
     }

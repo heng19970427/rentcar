@@ -21,12 +21,6 @@ public class PhoneUserApi {
 
     @Autowired
     private UserService userService;
-
-    @RequestMapping("getAllShop")
-    public List<User> getAllShop(){
-        return userService.getAllUserShop();
-    }
-
     @RequestMapping("login")
     public User login(@RequestParam("phone")String phone, @RequestParam("password") String password){
         User user = userService.getUserByPhoneAndPassword(phone,password);

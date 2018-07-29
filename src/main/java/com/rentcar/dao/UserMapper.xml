@@ -80,4 +80,14 @@
           </if>
         )
     </insert>
+
+    <select id="queryUserByPhone" parameterType="string" resultMap="userMap">
+        SELECT * from user
+        WHERE phone=#{v}
+    </select>
+
+    <select id="queryUserByToken" parameterType="string" resultType="User">
+        SELECT * from user
+        WHERE token=#{v}
+    </select>
 </mapper>

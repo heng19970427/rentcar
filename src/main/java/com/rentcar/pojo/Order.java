@@ -1,5 +1,6 @@
 package com.rentcar.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ public class Order {
     Date returnDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date returnDateReal;
+    String phone;
     String status;
     double extraDerate;
     double fee;
@@ -38,6 +40,7 @@ public class Order {
         this.orderId = orderId;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getRentDate() {
         return rentDate;
     }
@@ -46,6 +49,7 @@ public class Order {
         this.rentDate = rentDate;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getReturnDate() {
         return returnDate;
     }
@@ -54,6 +58,7 @@ public class Order {
         this.returnDate = returnDate;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getReturnDateReal() {
         return returnDateReal;
     }
@@ -124,5 +129,13 @@ public class Order {
 
     public void setExtraDerate(double extraDerate) {
         this.extraDerate = extraDerate;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
