@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html lang="en">
 <head>
     <title>租车管理系统</title>
     <jsp:include page="../js_css.jsp"/>
+    <style>
+        body, html {
+            font-family: "微软雅黑", sans-serif;
+        }
+    </style>
 </head>
 <body>
-   <jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp"/>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a href="../index.html" role="tab">订单信息</a></li>
-                <li class="active"><a href="#" role="tab">商家信息</a></li>
-                <li><a href="../car/carManager.html" role="tab">车辆管理</a></li>
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <jsp:include page="sidebar.jsp"/>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" id="mainWindow">
             <div class="row">
                 <form class=" col-md-8 form-inline">
                     <div class="input-group">
@@ -72,16 +72,8 @@
                     </tr>
                 </table>
             </div>
-
-        </div>
+        </main>
     </div>
 </div>
-
-<script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
-<script src="../js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="../js/holder.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

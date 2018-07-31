@@ -10,20 +10,17 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span data-feather="home"></span>
+                <a href="${pageContext.request.contextPath}/police/car_manage" class="nav-link">
                     车辆管理
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span data-feather="home"></span>
+                <a href="${pageContext.request.contextPath}/police/user_manage" class="nav-link">
                     商家信息
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span data-feather="home"></span>
+                <a href="${pageContext.request.contextPath}/police/order_manage" class="nav-link">
                     订单信息
                 </a>
             </li>

@@ -13,7 +13,7 @@
             <a href="#" class="nav-link navbar-link">管理员 王警官,您好，欢迎使用</a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link navbar-link">注销</a>
+            <a href="${pageContext.request.contextPath}/logout" class="nav-link navbar-link">注销</a>
         </li>
     </ul>
 </nav>
