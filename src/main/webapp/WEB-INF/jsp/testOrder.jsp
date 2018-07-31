@@ -12,14 +12,14 @@
 </head>
 <body>
     <form action="${pageContext.request.contextPath}/order/api_v1/create_order">
-        起租日期:<input type="text" name="order.rentDate"/><br/>
-        归还日期:<input type="text" name="order.returnDate"/><br/>
-        实际归还日期:<input type="text" name="order.returnDateReal"/><br/>
-        状态:<input type="text" name="order.status"/><br/>
-        额外减免:<input type="text" name="order.extraDerate"/><br/>
-        费用:<input type="text" name="order.fee"/><br/>
-        剩余油量:<input type="text" name="order.fuelRemain"/><br/>
-        汽车ID:<input type="text" name="car.carId"/><br/>
+        起租日期:<input type="text" name="rentDate"/><br/>
+        归还日期:<input type="text" name="returnDate"/><br/>
+        实际归还日期:<input type="text" name="returnDateReal"/><br/>
+        状态:<input type="text" name="status"/><br/>
+        额外减免:<input type="text" name="extraDerate"/><br/>
+        费用:<input type="text" name="fee"/><br/>
+        剩余油量:<input type="text" name="fuelRemain"/><br/>
+        汽车ID:<input type="text" name="carId"/><br/>
         套餐ID:<input type="text" name="discountPackage.disCountPackageId"/><br/>
         商家ID:<input type="text" name="belong.userId"/><br/>
         <input type="submit" value="提交">

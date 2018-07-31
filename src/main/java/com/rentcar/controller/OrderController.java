@@ -1,14 +1,12 @@
 package com.rentcar.controller;
 
-import com.rentcar.pojo.IdCard;
-import com.rentcar.pojo.Order;
-import com.rentcar.pojo.OrderForm;
-import com.rentcar.pojo.User;
+import com.rentcar.pojo.*;
 import com.rentcar.service.IdCardService;
 import com.rentcar.service.OrderService;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,29 +29,49 @@ public class OrderController {
 
     @RequestMapping("create_order")
     @ResponseBody
-    public String createOrder(OrderForm orderForm){
-        logger.debug("");
-        Order order=orderForm.getOrder();
-        User user=orderForm.getUser();
+    @CrossOrigin(origins="*") //允许跨域
+    public Response createOrder(OrderForm orderForm){
+        logger.info("------createOrder start------");
+
+        Response response=new Response();
+        if(orderForm==null){
+            response.setCode(1);
+            response.setMsg("订单信息为空");
+            return response;
+        }
         IdCard idCard=orderForm.getIdCard();
         if(idCard==null){
-            order.setStatus("未提车");
+            //user!=null
+            logger.debug("在线下单,userId:"+orderForm.getUser());
+            orderForm.setStatus("未提车");
         }
         else {
-            order.setStatus("出租中");
+            logger.debug("线下租车");
+            orderForm.setStatus("出租中");
             idCardService.addIdcardInfo(idCard);
-            if(order.getUser().getUserId()==null){
-                //线下租车
+            //线下租车 user==null
+            User user=userService.getUserByPhone(orderForm.getPhone());
+            if(user==null){
+                user=new User();
+                logger.debug("线下租车,用户未注册:"+idCard.toString());
                 user.setIdCard(idCard);
+                user.setPhone(orderForm.getPhone());
                 userService.addUser(user);
+            }else{
+                orderForm.setUser(user);
             }
+            idCardService.addIdcardInfo(idCard);
         }
-        idCardService.addIdcardInfo(idCard);
-        orderService.createOrder(order);
-        return "OK";
+        orderService.createOrder(orderForm);
+        logger.info("------createOrder end------");
+        response.setCode(0);
+        response.setMsg("订单创建成功");
+        return response;
     }
 
+
     /**商家修改订单
+
         两次修改订单:
         1.提车的时候
             上传身份证信息，userId为空，创建用户
@@ -63,15 +81,19 @@ public class OrderController {
     @RequestMapping("alter_order")
     @ResponseBody
     public String alterOrder(OrderForm orderForm){
-        logger.debug("");
+        logger.debug("线上租车，提车");
+        IdCard idCard = orderForm.getIdCard();
+        orderService.alterOrder(orderForm);
+        idCardService.addIdcardInfo(idCard);
         return "OK";
     }
 
     //获得用户所有订单
-    @RequestMapping("order_user_all")
+    @RequestMapping("get_userAllOrder")
     @ResponseBody
-    public List<Order> getUserAllOrder(int userId){
-       return orderService.getUserAllOrder(userId);
+    public List<Order> getUserAllOrder(Integer belongId,Integer userId,String status){
+       return orderService.getUserAllOrder(belongId,userId,status);
     }
+
 
 }

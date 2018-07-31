@@ -52,4 +52,14 @@ public interface UserService {
     */
     void addUser(User user);
 
+    User getUserByPhone(String phone);
+
+    /**
+    * @Description:
+    * @Param: []
+    * @return: com.rentcar.pojo.User
+    * @Author: Zr
+    * @Date: 2018/7/29
+    */
+    User checkToken(String token);
 }

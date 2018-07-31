@@ -54,5 +54,15 @@ public class UserServiceImpl implements UserService{
         userMapper.insertUser(user);
     }
 
+    @Override
+    public User getUserByPhone(String phone) {
+        return userMapper.queryUserByPhone(phone);
+    }
+
+    @Override
+    public User checkToken(String token) {
+        return userMapper.queryUserByToken(token);
+    }
+
 
 }

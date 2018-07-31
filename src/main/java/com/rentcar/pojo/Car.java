@@ -20,6 +20,7 @@ public class Car {
     private List<Image> images;
     User belong;
 
+
     public String getPlateNumber() {
         return plateNumber;
     }

@@ -1,5 +1,6 @@
 package com.rentcar.controller;
 
+import com.rentcar.pojo.Response;
 import com.rentcar.pojo.User;
 import com.rentcar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("all_shop")
+    @RequestMapping("get_allShop")
     public List<User> getAllUserShop(){
         return userService.getAllUserShop();
     }
 
+    @RequestMapping("tokenCheck")
+    public Response checkToken(String token){
+        Response response=new Response();
+        User user=userService.checkToken(token);
+        if(user!=null){
+
+        }
+        return response;
+    }
 }

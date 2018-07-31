@@ -17,6 +17,11 @@ public class UserMapperTest extends BaseTest{
         userMapper.insertUser(user);
     }
 
+    @Test
+    public void testQueryUserByPhone(){
+        User user = userMapper.queryUserByPhone("17607969275");
+        System.out.println(user);
+    }
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
