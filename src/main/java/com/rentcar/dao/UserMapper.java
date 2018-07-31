@@ -70,4 +70,7 @@ public interface UserMapper {
     User queryUserByPhone(String phone);
 
     User queryUserByToken(String token);
+
+    @Select("select * from user where phone=#{phone} and token=#{token}")
+    User verify(@Param("phone") String phone,@Param("token") String token);
 }

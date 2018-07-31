@@ -27,25 +27,22 @@ public class CarManagerServiceImpl implements CarManagerService {
     @Autowired
     private ImageMapper imageMapper;
     @Override
-    public List<Car> getAllCar(int userId,String basePath) {
+    public List<Car> getAllCar(int userId) {
         List<Car> carList=carMapper.queryCarList(userId);
         User belong = userService.getUserByUserId(userId);
         for (Car car : carList){
             //封装商家
             car.setBelong(belong);
             //获取图片数组
-            String[] imgPaths = car.getImg().split(";");
+            String[] imgIds = car.getImg().split(";");
             //获取图片封装汽车图片集合
             List<Image> images = new ArrayList<Image>();
-            for(int i=0;i<imgPaths.length;i++){
-                Image image = imageMapper.queryCarImgPath(Integer.valueOf(imgPaths[i]));
-                image.setPath(basePath+image.getPath());
+            for (String imgId : imgIds) {
+                Image image = imageMapper.queryCarImgPath(Integer.valueOf(imgId));
                 images.add(image);
             }
             car.setImages(images);
         }
-
-
         return carList;
     }
 
@@ -54,6 +51,7 @@ public class CarManagerServiceImpl implements CarManagerService {
         return carMapper.queryAllUsingCar();
     }
 
+    @Override
     public int addCar(Car car){
         return carMapper.insertCar(car);
     }

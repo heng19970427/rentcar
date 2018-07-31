@@ -1,13 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Xiaoliu
-  Date: 2018/7/17
-  Time: 14:39
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="net.sf.json.JSONObject" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script>
-    axios.defaults.baseURL = '/Rentcar';
+    const oneDayTime = 1000*60*60*24;
+    axios.defaults.baseURL = '${pageContext.request.contextPath}';
+    let currentUser = <%=JSONObject.fromObject(session.getAttribute("user")).toString()%>;
     function isValidPhone(phone) {
         const reg = /^1[3|4|5|7|8][0-9]\d{8}$/;
         return reg.test(phone);
@@ -50,10 +46,7 @@
                 }
             };
             return {
-                user: {
-                    username: '顺丰租车',
-                    userId: 3,
-                },
+                user: currentUser,
                 cars: [],
                 disCountPackages: [],
                 carId: 0,
@@ -61,6 +54,7 @@
                 active: 0,
                 orders: [],
                 orderForm: {
+                    extraDerate: 0,
                     phone: '',
                     idCard: {
                         name: '',
@@ -75,9 +69,9 @@
                     },
                     car: null,
                     discountPackage: {
-                        disCountPackageId: 1,
-                        disCountFee: 30.0,
-                        day: 4,
+                        disCountPackageId: 0,
+                        disCountFee: 0.0,
+                        day: 0,
                         belong: null
                     },
                     belong: null,
@@ -100,40 +94,45 @@
                         {validator: checkPhone, trigger:'change' },
                         {required:true, message: '请输入手机号', trigger: 'blur'}
                     ],
-                    'IdCard.name':[
+                    'idCard.name':[
                         {required:true, message: '请输入姓名', trigger: 'blur'}
                     ],
-                    'IdCard.sex':[
+                    'idCard.sex':[
                         {required:true, message: '请输入性别', trigger: 'blur'}
                     ],
-                    'IdCard.folk':[
+                    'idCard.folk':[
                         {required:true, message: '请输入民族', trigger: 'blur'}
                     ],
-                    'IdCard.birthday':[
+                    'idCard.birthday':[
                         {required:true, message: '请输入生日', trigger: 'change'}
                     ],
-                    'IdCard.idNumber':[
+                    'idCard.idNumber':[
                         {required:true, message:'请输入身份证号码', trigger: 'blur'}
                     ],
-                    'IdCard.address':[
+                    'idCard.address':[
                         {required:true, message:'请输入住址', trigger: 'blur'}
                     ],
-                    'IdCard.agency':[
+                    'idCard.agency':[
                         {required:true, message:'请输入签发机关', trigger: 'blur'}
                     ],
-                    'IdCard.expireStart':[
+                    'idCard.expireStart':[
                         {required:true, message:'请输入有效期限', trigger: 'change'}
                     ],
-                    'IdCard.expireEnd':[
+                    'idCard.expireEnd':[
                         {required:true, message:'请输入有效期限', trigger: 'blur'}
                     ]
+                },
+                pickerOptions1: {
+                    disabledDate(d) {
+                        return d.getTime() < (Date.now()-oneDayTime);
+                    }
                 }
             }
         },
         created: function () {
             this.getCars();
             this.getDisCountPackages();
-            this.getOrders(this.user.userId,'','出租中');
+            this.getOrders(this.user.userId,'','');
         },
         methods: {
             next() {
@@ -160,7 +159,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let vm = this;
-                        axios.post('/order/api_v1/create_order',vm.orderForm)
+                        axios.post('/api_v1/order/create_order',vm.orderForm)
                             .then(function (resp) {
                                 if (resp.data.code === 0) {
                                     vm.$notify({
@@ -198,7 +197,7 @@
             },
             getCars() {
                 let vm = this;
-                axios.get('/car/api_v1/all_car?userId=' + this.user.userId)
+                axios.get('/api_v1/car/all_car?userId=' + this.user.userId)
                     .then(function (resp) {
                         console.log(resp);
                         vm.cars = resp.data;
@@ -208,7 +207,7 @@
             },
             getDisCountPackages() {
                 let vm = this;
-                axios.get('/discount/api_v1/get_allDiscount?userId=' + this.user.userId)
+                axios.get('/api_v1/discount/get_allDiscount?userId=' + this.user.userId)
                     .then(function (resp) {
                         console.log(resp);
                         vm.disCountPackages = resp.data;
@@ -219,7 +218,6 @@
             readCard() {
                 let vm = this;
                 ws.onmessage = sMessage;
-
                 function sMessage(msg) {
                     let json = JSON.parse(msg.data);
                     let act = json['act'];
@@ -265,7 +263,7 @@
                             vm.IdCard.expireStart = changeDateFormat(info[7]);
                             if (info[8].length === 8) info[8] = changeDateFormat(info[8]);
                             vm.IdCard.expireEnd = info[8];
-                            vm.orderForm.IdCard = vm.IdCard;
+                            vm.orderForm.idCard = vm.IdCard;
                         }
                     }
                 }
@@ -273,7 +271,7 @@
             },
             getOrders(bid,uid,status) {
                 let vm = this;
-                axios.post('/order/api_v1/get_userAllOrder',{
+                axios.post('/api_v1/order/get_userAllOrder',{
                     belongId:bid,
                     uid:uid,
                     status:status
@@ -286,23 +284,34 @@
             filterHandler(value, row, column) {
                 const property = column['property'];
                 return row[property] === value;
+            },
+        },
+        watch: {
+            disCountPackageId: function () {
+                if (this.disCountPackageId === 0){
+                    this.orderForm.discountPackage.day = 0;
+                    this.orderForm.discountPackage.disCountFee = 0;
+                }else {
+                    for (let dp of this.disCountPackages) {
+                        if (dp.disCountPackageId === this.disCountPackageId) {
+                            this.orderForm.discountPackage = dp;
+                        }
+                    }
+                }
+                this.orderForm.returnDate = new Date(
+                    new Date(this.orderForm.rentDate).getTime() + oneDayTime * this.orderForm.discountPackage.day
+                ).format("yyyy-MM-dd")
             }
         },
         computed: {
             fee: function () {
                 if (this.orderForm.car !== null) {
                     let sCar = this.orderForm.car;
-                    let sDP = null;
+                    let sDP = this.orderForm.discountPackage;
                     if (this.disCountPackageId === 0) {
-                        return sCar.rentFee;
+                        return sCar.rentFee * this.rentDay - this.orderForm.extraDerate;
                     }
-                    for (let dp of this.disCountPackages) {
-                        if (dp.disCountPackageId === this.disCountPackageId) {
-                            sDP = dp;
-                            this.orderForm.discountPackage = dp;
-                        }
-                    }
-                    return sCar.rentFee - (sDP.disCountFee * sDP.day);
+                    return sCar.rentFee * this.rentDay - (sDP.disCountFee * sDP.day) - this.orderForm.extraDerate;
                 }
                 return 0;
             },
@@ -313,6 +322,16 @@
                 set: function (newDate) {
                     this.orderForm.rentDate = newDate[0];
                     this.orderForm.returnDate = newDate[1];
+                }
+            },
+            rentDay: {
+                get: function () {
+                    return (new Date(this.orderForm.returnDate).getTime()-new Date(this.orderForm.rentDate).getTime())/oneDayTime;
+                },
+                set: function (day) {
+                    this.orderForm.returnDate = new Date(
+                        new Date(this.orderForm.rentDate).getTime() + oneDayTime * day
+                    ).format("yyyy-MM-dd")
                 }
             }
         }

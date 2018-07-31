@@ -19,6 +19,8 @@ public class User {
     private Integer verifyId;
     private Role role;
     private IdCard idCard;
+    private Integer roleId;
+    private Integer idCardId;
 
 
 
@@ -140,5 +142,21 @@ public class User {
 
     public void setIdCard(IdCard idCard) {
         this.idCard = idCard;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Integer getIdCardId() {
+        return idCardId;
+    }
+
+    public void setIdCardId(Integer idCardId) {
+        this.idCardId = idCardId;
     }
 }

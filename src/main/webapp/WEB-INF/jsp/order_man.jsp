@@ -40,19 +40,6 @@
                     <div class="btn-group mr-2">
                         <a href="${pageContext.request.contextPath}/order_create" class="btn btn-outline-secondary">新增订单</a>
                     </div>
-                    <%--<div class="dropdown">--%>
-                        <%--<button class="btn btn-outline-secondary dropdown-toggle" type="button" id="orderMenu"--%>
-                                <%--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                            <%--<span data-feather="bookmark"></span>--%>
-                            <%--订单状态选择--%>
-                        <%--</button>--%>
-                        <%--<div class="dropdown-menu" aria-labelledby="orderMenu">--%>
-                            <%--<a href="#" class="dropdown-item">全部</a>--%>
-                            <%--<a href="#" class="dropdown-item">出租中</a>--%>
-                            <%--<a href="#" class="dropdown-item">已逾期</a>--%>
-                            <%--<a href="#" class="dropdown-item">已完成</a>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
                 </div>
             </div>
         <el-row :span="24">
@@ -67,6 +54,18 @@
                 <el-table-column
                         prop="car.type"
                         label="汽车型号">
+                </el-table-column>
+                <el-table-column
+                        prop="rentDate"
+                        label="租出日期">
+                </el-table-column>
+                <el-table-column
+                        prop="returnDate"
+                        label="约定还车日期">
+                </el-table-column>
+                <el-table-column
+                        prop="fee"
+                        label="预计费用">
                 </el-table-column>
                 <el-table-column
                         prop="phone"

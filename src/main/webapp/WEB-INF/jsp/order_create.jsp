@@ -133,7 +133,7 @@
                                 <el-step title="填写其他信息"></el-step>
                             </el-steps>
                         </div>
-                        <div class="order-body">
+                        <div class="order-body" style="min-width: 600px">
                             <transition name="el-zoom-in-top">
                                 <el-row :gutter="10" id="step-0" v-show="active === 0">
                                     <el-col :span="12" v-for="(car,index) in cars" :item="car" :key="car.carId" :index="index">
@@ -180,71 +180,84 @@
                             <transition name="el-zoom-in-top">
                                 <el-row id="step-2" v-show="active === 2">
                                     <el-form :model="orderForm" ref="orderForm" :rules="rules" label-position="left" label-width="80px" id="myOrder">
-                                        <el-form-item label="租车日期" required>
-                                            <el-date-picker
-                                                    v-model="rentLong"
-                                                    type="daterange"
-                                                    format="yyyy 年 MM 月 dd 日"
-                                                    value-format="yyyyMMdd"
-                                                    range-separator="-"
-                                                    start-placeholder="提车日期"
-                                                    end-placeholder="还车日期">
-                                            </el-date-picker>
+                                        <el-row>
+                                            <el-col :span="12">
+                                                <el-form-item label="租车日期" required>
+                                                    <el-date-picker
+                                                            v-model="rentLong"
+                                                            type="daterange"
+                                                            format="yyyy 年 MM 月 dd 日"
+                                                            value-format="yyyy-MM-dd"
+                                                            range-separator="-"
+                                                            :picker-options="pickerOptions1"
+                                                            start-placeholder="提车日期"
+                                                            end-placeholder="还车日期">
+                                                    </el-date-picker>
+                                                </el-form-item>
+                                            </el-col>
+                                            <el-col :span="12">
+                                                <el-form-item label="租车天数">
+                                                    <el-input placeholder="输入租车天数" v-model="rentDay"></el-input>
+                                                </el-form-item>
+                                            </el-col>
+                                        </el-row>
+                                        <el-form-item label="优惠金额">
+                                            <el-input placeholder="给该客户额外的优惠金额" v-model="orderForm.extraDerate" style="width: 200px"></el-input>
                                         </el-form-item>
                                         <el-form-item label="联系方式" prop="phone" required>
                                             <el-input name="phone" placeholder="请输入联系方式" v-model="orderForm.phone"></el-input>
                                         </el-form-item>
                                         <el-form-item label="基本信息">
                                             <el-col :span="6">
-                                                <el-form-item prop="IdCard.name">
-                                                    <el-input v-model="orderForm.IdCard.name" name="IdCard.name" placeholder="姓名"></el-input>
+                                                <el-form-item prop="idCard.name">
+                                                    <el-input v-model="orderForm.idCard.name" name="idCard.name" placeholder="姓名"></el-input>
                                                 </el-form-item>
                                             </el-col>
                                             <el-col :span="3" :offset="1">
-                                                <el-form-item prop="IdCard.sex">
-                                                    <el-input v-model="orderForm.IdCard.sex" name="IdCard.sex" placeholder="性别"></el-input>
+                                                <el-form-item prop="idCard.sex">
+                                                    <el-input v-model="orderForm.idCard.sex" name="idCard.sex" placeholder="性别"></el-input>
                                                 </el-form-item>
                                             </el-col>
                                             <el-col :span="3" :offset="1">
-                                                <el-form-item prop="IdCard.folk">
-                                                    <el-input v-model="orderForm.IdCard.folk" name="IdCard.folk" placeholder="民族"></el-input>
+                                                <el-form-item prop="idCard.folk">
+                                                    <el-input v-model="orderForm.idCard.folk" name="idCard.folk" placeholder="民族"></el-input>
                                                 </el-form-item>
                                             </el-col>
                                             <el-col :span="8" :offset="1">
-                                                <el-form-item prop="IdCard.birthday">
+                                                <el-form-item prop="idCard.birthday">
                                                     <el-date-picker placeholder="生日"
                                                                     format="yyyy 年 MM 月 dd 日"
                                                                     value-format="yyyy-MM-dd"
-                                                                    v-model="orderForm.IdCard.birthday"
-                                                                    name="IdCard.birthday">
+                                                                    v-model="orderForm.idCard.birthday"
+                                                                    name="idCard.birthday">
                                                     </el-date-picker>
                                                 </el-form-item>
                                             </el-col>
                                         </el-form-item>
-                                        <el-form-item label="身份证号" prop="IdCard.idNumber">
-                                            <el-input placeholder="身份证号" v-model="orderForm.IdCard.idNumber" name="IdCard.idNumber"></el-input>
+                                        <el-form-item label="身份证号" prop="idCard.idNumber">
+                                            <el-input placeholder="身份证号" v-model="orderForm.idCard.idNumber" name="idCard.idNumber"></el-input>
                                         </el-form-item>
-                                        <el-form-item label="家庭住址" prop="IdCard.address">
-                                            <el-input placeholder="家庭住址" v-model="orderForm.IdCard.address" name="IdCard.address"></el-input>
+                                        <el-form-item label="家庭住址" prop="idCard.address">
+                                            <el-input placeholder="家庭住址" v-model="orderForm.idCard.address" name="idCard.address"></el-input>
                                         </el-form-item>
-                                        <el-form-item label="签发机关" prop="IdCard.agency">
-                                            <el-input placeholder="签发机关" v-model="orderForm.IdCard.agency" name="IdCard.agency"></el-input>
+                                        <el-form-item label="签发机关" prop="idCard.agency">
+                                            <el-input placeholder="签发机关" v-model="orderForm.idCard.agency" name="idCard.agency"></el-input>
                                         </el-form-item>
                                         <el-form-item label="有效期限" required>
                                             <el-col :span="7">
-                                                <el-form-item prop="IdCard.expireStart">
+                                                <el-form-item prop="idCard.expireStart">
                                                     <el-date-picker placeholder="起始日期"
                                                                     format="yyyy 年 MM 月 dd 日"
                                                                     value-format="yyyy-MM-dd"
-                                                                    v-model="orderForm.IdCard.expireStart"
-                                                                    name="IdCard.expireStart">
+                                                                    v-model="orderForm.idCard.expireStart"
+                                                                    name="idCard.expireStart">
                                                     </el-date-picker>
                                                 </el-form-item>
                                             </el-col>
-                                            <el-col :span="1" style="text-align: center">至</el-col>
+                                            <el-col :span="1">至</el-col>
                                             <el-col :span="7">
-                                                <el-form-item prop="IdCard.expireEnd">
-                                                    <el-input placeholder="失效日期" v-model="orderForm.IdCard.expireEnd" name="IdCard.expireEnd"></el-input>
+                                                <el-form-item prop="idCard.expireEnd">
+                                                    <el-input placeholder="失效日期" v-model="orderForm.idCard.expireEnd" name="idCard.expireEnd"></el-input>
                                                 </el-form-item>
                                             </el-col>
                                         </el-form-item>
@@ -255,8 +268,8 @@
                         <div class="order-submit">
                             <el-button @click="pre" v-if="active > 0">上一步</el-button>
                             <el-button @click="next" v-if="active < 2">下一步</el-button>
-                            <el-button type="primary" @click="submit('orderForm')" v-if="active === 2">提交</el-button>
                             <el-button @click="readCard" v-if="active === 2">读取身份证</el-button>
+                            <el-button type="primary" @click="submit('orderForm')" v-if="active === 2">提交</el-button>
                             <span v-if="active === 2" style="position:fixed;bottom: 20px;right: 20px">预计租金 <span class="car-price">{{ fee }}</span> 元(只含车辆租金)</span>
                         </div>
                     </div>

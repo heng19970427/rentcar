@@ -64,5 +64,9 @@ public class UserServiceImpl implements UserService{
         return userMapper.queryUserByToken(token);
     }
 
+    @Override
+    public boolean verify(String phone, String token) {
+        return userMapper.verify(phone, token) != null;
+    }
 
 }

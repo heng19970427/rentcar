@@ -1,5 +1,6 @@
 package com.rentcar.controller.phone;
 
+import com.rentcar.pojo.Response;
 import com.rentcar.pojo.User;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ public class PhoneUserApi {
 
     @Autowired
     private UserService userService;
+
     @RequestMapping("login")
     public User login(@RequestParam("phone")String phone, @RequestParam("password") String password){
         User user = userService.getUserByPhoneAndPassword(phone,password);
@@ -38,5 +40,18 @@ public class PhoneUserApi {
             logger.info(phone+" 尝试登陆失败!");
             return null;
         }
+    }
+
+    @RequestMapping("verify")
+    public Response verify(@RequestParam("phone")String phone,@RequestParam("token")String token){
+        Response resp = new Response();
+        if (userService.verify(phone,token)){
+            resp.setCode(0);
+            resp.setMsg("token有效");
+        }else {
+            resp.setCode(-2);
+            resp.setMsg("token失效,请重新登录!");
+        }
+        return resp;
     }
 }

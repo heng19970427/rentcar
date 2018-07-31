@@ -125,7 +125,7 @@
             <if test="phone!=null">
                 phone=#{phone},
             </if>
-            <if test="status!=null">
+            <if test='status!=null and status!=""'>
                 `status`=#{status},
             </if>
             <if test="extraDerate!=null">

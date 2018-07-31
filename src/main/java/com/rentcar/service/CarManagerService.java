@@ -14,7 +14,7 @@ public interface CarManagerService {
      * @param userId: 用户id basePath: 项目路径
      * @return List 所有用户租用车辆
      */
-    List<Car> getAllCar(int userId,String basePath);
+    List<Car> getAllCar(int userId);
 
     /**
     * @Description: 获取全区正在出租的车辆

@@ -2,6 +2,8 @@ package com.rentcar.service;
 
 import com.rentcar.pojo.IdCard;
 import com.rentcar.pojo.User;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,4 +64,12 @@ public interface UserService {
     * @Date: 2018/7/29
     */
     User checkToken(String token);
+
+    /**
+     * 通过phone和 token 验证用户
+     * @param phone 用户手机号
+     * @param token 用户token
+     * @return {@code true}验证成功, {@code false} 验证失败
+     */
+    boolean verify(String phone,String token);
 }

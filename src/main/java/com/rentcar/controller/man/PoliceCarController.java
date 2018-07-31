@@ -18,11 +18,6 @@ public class PoliceCarController {
     @Autowired
     private CarManagerService carManagerService;
 
-    @RequestMapping("car_manager")
-    public String carInfo(){
-        return "police/car_manager";
-    }
-
     @RequestMapping("get_AllUsingCar")
     public List<Car> getAllUsingCar(){
        return carManagerService.getAllUsingCar();

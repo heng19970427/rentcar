@@ -34,8 +34,7 @@ public class CarController {
 
     @RequestMapping("all_car")
     public List<Car> getAllCar(@RequestParam("userId") int userId,HttpServletRequest request){
-        String basePath = request.getSession().getServletContext().getRealPath("/")+"static\\upload\\";
-        return carManagerService.getAllCar(userId,basePath);
+        return carManagerService.getAllCar(userId);
     }
 
     @RequestMapping("add_car")

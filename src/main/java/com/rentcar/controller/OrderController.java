@@ -6,10 +6,7 @@ import com.rentcar.service.OrderService;
 import com.rentcar.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,9 +25,8 @@ public class OrderController {
     private IdCardService idCardService;
 
     @RequestMapping("create_order")
-    @ResponseBody
     @CrossOrigin(origins="*") //允许跨域
-    public Response createOrder(OrderForm orderForm){
+    public Response createOrder(@RequestBody OrderForm orderForm){
         logger.info("------createOrder start------");
 
         Response response=new Response();
@@ -48,7 +44,6 @@ public class OrderController {
         else {
             logger.debug("线下租车");
             orderForm.setStatus("出租中");
-            idCardService.addIdcardInfo(idCard);
             //线下租车 user==null
             User user=userService.getUserByPhone(orderForm.getPhone());
             if(user==null){
