@@ -65,14 +65,14 @@
         padding-bottom: 0;
     }
     .navbar-link {
-        color: #333333;
+        color: #eaecee;
         font-weight: bold;
         text-align: start;
         vertical-align: middle;
         line-height: 50px;
     }
     .navbar-link:hover{
-        color: #333333;
+        color: #d7d7d7;
         font-weight: bold;
         text-decoration: none;
     }
