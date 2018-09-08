@@ -10,10 +10,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SellerdetailServiceImpl implements UserDetailsService{
 
     @Autowired
@@ -28,8 +30,8 @@ public class SellerdetailServiceImpl implements UserDetailsService{
         SellerExample.Criteria criteria = sellerExample.createCriteria();
         criteria.andUsernameEqualTo(username);
         List<Seller> sellers = sellerMapper.selectByExample(sellerExample);
-        Seller seller = sellers.get(0);
-        if(seller!=null){
+        if(sellers.size()>0){
+            Seller seller = sellers.get(0);
             if(seller.getStatus().equals("1")){
                 return new User(username,seller.getPassword(),authorityList);
             }else {
