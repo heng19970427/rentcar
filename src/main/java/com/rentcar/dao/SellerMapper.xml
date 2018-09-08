@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rentcar.dao.SellerMapper" >
+
+    <resultMap id="BaseResultMap" type="com.rentcar.pojo.Seller" >
+        <id column="sellerId" property="sellerId" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="realName" property="realName" jdbcType="VARCHAR" />
+        <result column="companyLocation" property="companyLocation" jdbcType="VARCHAR" />
+        <result column="companyName" property="companyName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="licenceNumber" property="licenceNumber" jdbcType="VARCHAR" />
+        <result column="idCardNumber" property="idCardNumber" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        sellerId, username, password, email, realName, companyLocation, companyName, phone, 
+        status, licenceNumber, idCardNumber
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rentcar.pojo.SellerExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from seller
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from seller
+        where sellerId = #{sellerId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from seller
+        where sellerId = #{sellerId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.rentcar.pojo.SellerExample" >
+        delete from seller
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.rentcar.pojo.Seller" >
+        insert into seller (sellerId, username, password, 
+            email, realName, companyLocation, 
+            companyName, phone, status, 
+            licenceNumber, idCardNumber)
+        values (#{sellerId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+            #{email,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{companyLocation,jdbcType=VARCHAR}, 
+            #{companyName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+            #{licenceNumber,jdbcType=VARCHAR}, #{idCardNumber,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.rentcar.pojo.Seller" >
+        insert into seller
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sellerId != null" >
+                sellerId,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="realName != null" >
+                realName,
+            </if>
+            <if test="companyLocation != null" >
+                companyLocation,
+            </if>
+            <if test="companyName != null" >
+                companyName,
+            </if>
+            <if test="phone != null" >
+                phone,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="licenceNumber != null" >
+                licenceNumber,
+            </if>
+            <if test="idCardNumber != null" >
+                idCardNumber,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="sellerId != null" >
+                #{sellerId,jdbcType=INTEGER},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null" >
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLocation != null" >
+                #{companyLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null" >
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="licenceNumber != null" >
+                #{licenceNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNumber != null" >
+                #{idCardNumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.rentcar.pojo.SellerExample" resultType="java.lang.Integer" >
+        select count(*) from seller
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update seller
+        <set >
+            <if test="record.sellerId != null" >
+                sellerId = #{record.sellerId,jdbcType=INTEGER},
+            </if>
+            <if test="record.username != null" >
+                username = #{record.username,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null" >
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null" >
+                email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.realName != null" >
+                realName = #{record.realName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.companyLocation != null" >
+                companyLocation = #{record.companyLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="record.companyName != null" >
+                companyName = #{record.companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null" >
+                phone = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null" >
+                status = #{record.status,jdbcType=VARCHAR},
+            </if>
+            <if test="record.licenceNumber != null" >
+                licenceNumber = #{record.licenceNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.idCardNumber != null" >
+                idCardNumber = #{record.idCardNumber,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update seller
+        set sellerId = #{record.sellerId,jdbcType=INTEGER},
+            username = #{record.username,jdbcType=VARCHAR},
+            password = #{record.password,jdbcType=VARCHAR},
+            email = #{record.email,jdbcType=VARCHAR},
+            realName = #{record.realName,jdbcType=VARCHAR},
+            companyLocation = #{record.companyLocation,jdbcType=VARCHAR},
+            companyName = #{record.companyName,jdbcType=VARCHAR},
+            phone = #{record.phone,jdbcType=VARCHAR},
+            status = #{record.status,jdbcType=VARCHAR},
+            licenceNumber = #{record.licenceNumber,jdbcType=VARCHAR},
+            idCardNumber = #{record.idCardNumber,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.rentcar.pojo.Seller" >
+        update seller
+        <set >
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null" >
+                realName = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLocation != null" >
+                companyLocation = #{companyLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null" >
+                companyName = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="licenceNumber != null" >
+                licenceNumber = #{licenceNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="idCardNumber != null" >
+                idCardNumber = #{idCardNumber,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where sellerId = #{sellerId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.rentcar.pojo.Seller" >
+        update seller
+        set username = #{username,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            realName = #{realName,jdbcType=VARCHAR},
+            companyLocation = #{companyLocation,jdbcType=VARCHAR},
+            companyName = #{companyName,jdbcType=VARCHAR},
+            phone = #{phone,jdbcType=VARCHAR},
+            status = #{status,jdbcType=VARCHAR},
+            licenceNumber = #{licenceNumber,jdbcType=VARCHAR},
+            idCardNumber = #{idCardNumber,jdbcType=VARCHAR}
+        where sellerId = #{sellerId,jdbcType=INTEGER}
+    </update>
+</mapper>

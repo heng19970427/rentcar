@@ -12,16 +12,6 @@
     <mvc:cors>
         <mvc:mapping path="/**"/>
     </mvc:cors>
-    
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/login"/>
-            <mvc:exclude-mapping path="/phone/api_v1/**"/>
-            <mvc:exclude-mapping path="/static/**"/>
-            <bean class="com.rentcar.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
 
     <!--默认servlet 处理静态资源响应-->
     <mvc:default-servlet-handler/>
