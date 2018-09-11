@@ -11,7 +11,7 @@
     <!-- 页面拦截规则 -->
     <http use-expressions="false" pattern="/seller/**" authentication-manager-ref="sellerManager">
         <intercept-url pattern="/seller/**" access="ROLE_SELLER" />
-        <form-login login-page="/shoplogin.html" login-processing-url="/seller/login"  default-target-url="/seller/index.html" authentication-failure-url="/shoplogin.html" always-use-default-target="true"/>
+        <form-login login-page="/shoplogin.html" login-processing-url="/seller/login"  default-target-url="/seller/goods_edit.html" authentication-failure-url="/shoplogin.html" always-use-default-target="true"/>
         <csrf disabled="true"/>
         <headers>
             <frame-options policy="SAMEORIGIN"/>

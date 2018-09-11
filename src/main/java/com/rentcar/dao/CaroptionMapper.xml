@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rentcar.dao.CaroptionMapper" >
+
+    <resultMap id="BaseResultMap" type="com.rentcar.pojo.Caroption" >
+        <id column="carOptionId" property="carOptionId" jdbcType="INTEGER" />
+        <result column="optionName" property="optionName" jdbcType="VARCHAR" />
+        <result column="optionValue" property="optionValue" jdbcType="VARCHAR" />
+        <result column="carId" property="carId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        carOptionId, optionName, optionValue, carId
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rentcar.pojo.CaroptionExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from carOption
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from carOption
+        where carOptionId = #{carOptionId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from carOption
+        where carOptionId = #{carOptionId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.rentcar.pojo.CaroptionExample" >
+        delete from carOption
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.rentcar.pojo.Caroption" >
+        insert into carOption (carOptionId, optionName, optionValue, 
+            carId)
+        values (#{carOptionId,jdbcType=INTEGER}, #{optionName,jdbcType=VARCHAR}, #{optionValue,jdbcType=VARCHAR}, 
+            #{carId,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.rentcar.pojo.Caroption" >
+        insert into carOption
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="carOptionId != null" >
+                carOptionId,
+            </if>
+            <if test="optionName != null" >
+                optionName,
+            </if>
+            <if test="optionValue != null" >
+                optionValue,
+            </if>
+            <if test="carId != null" >
+                carId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="carOptionId != null" >
+                #{carOptionId,jdbcType=INTEGER},
+            </if>
+            <if test="optionName != null" >
+                #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="optionValue != null" >
+                #{optionValue,jdbcType=VARCHAR},
+            </if>
+            <if test="carId != null" >
+                #{carId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.rentcar.pojo.CaroptionExample" resultType="java.lang.Integer" >
+        select count(*) from carOption
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update carOption
+        <set >
+            <if test="record.carOptionId != null" >
+                carOptionId = #{record.carOptionId,jdbcType=INTEGER},
+            </if>
+            <if test="record.optionName != null" >
+                optionName = #{record.optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.optionValue != null" >
+                optionValue = #{record.optionValue,jdbcType=VARCHAR},
+            </if>
+            <if test="record.carId != null" >
+                carId = #{record.carId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update carOption
+        set carOptionId = #{record.carOptionId,jdbcType=INTEGER},
+            optionName = #{record.optionName,jdbcType=VARCHAR},
+            optionValue = #{record.optionValue,jdbcType=VARCHAR},
+            carId = #{record.carId,jdbcType=INTEGER}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.rentcar.pojo.Caroption" >
+        update carOption
+        <set >
+            <if test="optionName != null" >
+                optionName = #{optionName,jdbcType=VARCHAR},
+            </if>
+            <if test="optionValue != null" >
+                optionValue = #{optionValue,jdbcType=VARCHAR},
+            </if>
+            <if test="carId != null" >
+                carId = #{carId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where carOptionId = #{carOptionId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.rentcar.pojo.Caroption" >
+        update carOption
+        set optionName = #{optionName,jdbcType=VARCHAR},
+            optionValue = #{optionValue,jdbcType=VARCHAR},
+            carId = #{carId,jdbcType=INTEGER}
+        where carOptionId = #{carOptionId,jdbcType=INTEGER}
+    </update>
+</mapper>

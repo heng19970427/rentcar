@@ -21,7 +21,7 @@ public class SellerdetailServiceImpl implements UserDetailsService{
     @Autowired
     private SellerMapper sellerMapper;
 
-    @Override
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<GrantedAuthority> authorityList=new ArrayList<>();
         authorityList.add(new SimpleGrantedAuthority("ROLE_SELLER"));
